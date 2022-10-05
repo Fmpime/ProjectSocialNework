@@ -5,6 +5,7 @@
     background:wheat;
     border-radius: 1.2em;
     box-shadow:0 0 10px;
+    height:20em;
   }
   .navbar div{
     display: flex;

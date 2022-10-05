@@ -1,0 +1,33 @@
+
+.post_item{
+    margin: 2em 0 2em;
+    display: flex;
+    line-height: 0;
+    height:100%;
+}
+
+.post_item img{
+    height: 4em;
+    width: 4em;
+    border-radius:50%;
+
+}
+.post__content{
+    border:0.2em solid turquoise;
+    background:wheat;
+    border-radius: 1.2em;
+    padding: 0 1em 0;
+    padding: 0.5em;
+}
+time{
+    height: 1em;
+    display: flex;
+    font-size: 12px;
+    color:black;
+    justify-content: flex-end;
+    align-items: flex-end;
+    
+}
+h4{
+    margin-left: 1em;
+}
