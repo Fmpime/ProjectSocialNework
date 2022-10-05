@@ -1,0 +1,29 @@
+.navbar{
+    grid-area: n;
+    display: grid;
+    align-items: center;
+    background:wheat;
+    border-radius: 1.2em;
+    box-shadow:0 0 10px;
+  }
+  .navbar div{
+    display: flex;
+    height:2.2em;
+    justify-content:center;
+    align-items: center;
+    height:100%;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.1s ease-in-out;
+  }
+  .navbar div:hover {
+    background:yellowgreen;
+  }
+  .navbar div:first-child{
+    border-top-left-radius:1.2em;
+    border-top-right-radius:1.2em;
+  }
+  .navbar div:last-child{
+    border-bottom-left-radius:1.2em;
+    border-bottom-right-radius:1.2em;
+  }
