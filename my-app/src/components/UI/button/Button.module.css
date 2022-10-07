@@ -1,0 +1,16 @@
+.btn{
+    all: unset;
+    display: flex;
+    margin: 0 auto 0 0;
+    border: 2px solid turquoise;
+    height:3em;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding: 0 1em;
+    transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.btn:hover{
+    background-color:white;
+}

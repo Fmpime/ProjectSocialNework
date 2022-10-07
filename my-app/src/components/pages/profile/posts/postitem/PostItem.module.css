@@ -2,8 +2,9 @@
 .post_item{
     margin: 2em 0 2em;
     display: flex;
-    line-height: 0;
-    height:100%;
+    height: 100%;
+    width: 50em;
+    
 }
 
 .post_item img{
@@ -13,11 +14,16 @@
 
 }
 .post__content{
+    display: flex;
+    flex-direction: column;
     border:0.2em solid turquoise;
     background:wheat;
     border-radius: 1.2em;
-    padding: 0 1em 0;
-    padding: 0.5em;
+    padding: 0.5em 1em;
+    margin-left: 0.5em;
+    width: 40em;
+    justify-content: space-between;
+    
 }
 time{
     height: 1em;
@@ -30,4 +36,15 @@ time{
 }
 h4{
     margin-left: 1em;
+    line-height:0;
+}
+.message {
+    word-wrap:break-word;
+    width: 40em;
+}
+.post__likes{
+    display: flex;
+    align-items: flex-end;
+    height: 1.5em;
+    justify-content:flex-start;
 }

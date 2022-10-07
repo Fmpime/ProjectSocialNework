@@ -3,12 +3,18 @@ import NewPost from "./newpost/NewPost";
 import PostItem from "./postitem/PostItem";
 import classes from "./Posts.module.css";
 const Posts = () => {
+  const newPostItem = ()=>{
+    
+  }
+    
+
   return (
     <div className={classes.posts}>
-      <NewPost/>
+      <NewPost />
       <PostItem/>
       <PostItem/>
       <PostItem/>
+      
     </div>
   );
 };

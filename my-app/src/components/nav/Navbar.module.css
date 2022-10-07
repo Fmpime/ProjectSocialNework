@@ -7,9 +7,9 @@
     box-shadow:0 0 10px;
     height:20em;
   }
-  .navbar div{
+  .link{
+    all: unset;
     display: flex;
-    height:2.2em;
     justify-content:center;
     align-items: center;
     height:100%;
@@ -17,14 +17,21 @@
     cursor: pointer;
     transition: background 0.1s ease-in-out;
   }
-  .navbar div:hover {
-    background:yellowgreen;
+  .link:hover {
+    background:rgb(223, 160, 79);
+    outline: 2px auto;
   }
-  .navbar div:first-child{
+ .link:focus{
+    background: rgb(255, 123, 0);
+    outline: 2px auto;
+    }
+  
+  .link:first-child{
     border-top-left-radius:1.2em;
     border-top-right-radius:1.2em;
   }
-  .navbar div:last-child{
+  .link:last-child{
     border-bottom-left-radius:1.2em;
     border-bottom-right-radius:1.2em;
   }
+  

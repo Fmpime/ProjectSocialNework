@@ -11,10 +11,11 @@ const PostItem = () => {
         alt="zxc"
       />
       <div className={classes.text__box}>
-        <h4>NickName:</h4>
+        <h4>NickName send:</h4>
       <div className={classes.post__content}>
         <h3>davadvadv</h3>
-        <p>qfveeqeveqvqevqevqevvvvvvvvvvvvvqevqevqevqevvkugsufvhljfdjhgsdhsdvhvdfhv</p>
+        <p className={classes.message}>qfveeqeveqvqevqevqevvvvvvvvvvvvqevqevqevqevvkugsufvddddddddddddddddddddddddddddddddddddddddddljfdjhgsdhsdvhvdfhv</p>
+        <div className={classes.post__likes}>likes:</div>
         <time>{`${a()}`}</time>
       </div>
       </div>

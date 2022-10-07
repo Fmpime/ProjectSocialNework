@@ -1,6 +1,6 @@
 .new__post{
     display: flex;
-    margin:2em 0 2em 4em;
+    margin:2em 0 2em 4.5em;
 
 }
 form{
@@ -19,4 +19,7 @@ form{
     border: 2px solid turquoise;
     border-radius: 0.4em;
 
+}
+.new__post p{
+    font-weight: bold;
 }
