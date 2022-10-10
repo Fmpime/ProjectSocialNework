@@ -1,23 +1,21 @@
+
 .messages{
-    display:grid;
-    grid-template-columns: 2fr 1fr 7fr;
+    display: grid;
+    grid-template-columns:3fr 0.5fr 10fr;
     height:100%;
 }
-.dialog{
-    display: flex;
-    flex-direction:column;
-    justify-content:space-around;
-    align-items: flex-start;
-    margin: 0 auto;
-}
+.dialog {
 
-.messages__block{
-    display: flex;
-    flex-direction:column;
-    justify-content:space-around;
-    align-items: flex-start;
-    
-}
-.active{
-    color:rgb(4, 0, 221);
-}
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 100%;
+    gap: 0;
+  
+  }
+  .messages__block{
+    display: grid;
+    grid-template-columns:auto;
+    align-items: center;
+  }
+  
+ 

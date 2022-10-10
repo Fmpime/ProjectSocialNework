@@ -1,0 +1,22 @@
+.dialogs__items{
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 1.2em;
+  transition: all 0.1s ease-in-out;
+
+}
+
+.dialogs__items:hover {
+  background: rgb(180, 74, 148);
+  outline: auto 1.2em #fff;
+}
+
+.dialogs__items:focus {
+  background: rgb(155, 14, 119);
+  outline: 2px auto;
+}

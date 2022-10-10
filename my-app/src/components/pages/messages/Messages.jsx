@@ -1,27 +1,28 @@
-import React from 'react';
-import classes from './Messages.module.css'
+import React, {useState} from "react";
+import DialogsItem from "./dialogs/DialogsItem";
+import classes from "./Messages.module.css";
+import MessagesPage from "./messagespages/MessagesPage";
+
 const Messages = () => {
-    return (
-        <div className={classes.messages}>
-        <div className={classes.dialog}>
-            <div className={classes.dialogs__items + ' ' + classes.active}>dssssssasdas</div>
-            <div className={classes.dialogs__items}>qeteqtqet</div>
-            <div className={classes.dialogs__items}>dhfghdfghdas</div>
-            <div className={classes.dialogs__items}>dcvbcvbcvbcvas</div>
-            <div className={classes.dialogs__items}>dsgdfgdfgdfsdas</div>
-        </div>
-        <hr/>
-        <div className={classes.messages__block}>
-            <div className={classes.message}>123123123</div>
-            <div className={classes.message}>34543534534</div>
-            <div className={classes.message}>56567567657</div>
-            <div className={classes.message}>789789789789</div>
-            <div className={classes.message}>9099898907675</div>
-            <div className={classes.message}>765675675</div>
-            <div className={classes.message}>543534534</div>
-        </div>
-        </div>
-    );
-}
+  
+  return (
+    <div className={classes.messages}>
+      <div className={classes.dialog}>
+      <DialogsItem  id='1' name='asdasdasd'/>
+      <DialogsItem  id='2' name='koolfos;o'/>
+      <DialogsItem  id='3' name='gtrgtgrtg'/>
+      <DialogsItem  id='4' name='qfqefefefe'/>
+      <DialogsItem  id='5' name='fffffffff'/>
+      </div>
+      <hr/>
+      <div className={classes.messages__block}>
+        <MessagesPage message="daje ne slichno" />
+        <MessagesPage message="daje ne vidno" />
+        <MessagesPage message="dalche bejat" />
+        <MessagesPage message="sirotkin top" />
+      </div>
+    </div>
+  );
+};
 
 export default Messages;
