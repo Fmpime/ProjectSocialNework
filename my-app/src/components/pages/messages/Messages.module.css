@@ -14,7 +14,7 @@
   }
   .messages__block{
     display: grid;
-    grid-template-columns:auto;
+    grid-template-rows:auto;
     align-items: center;
   }
   

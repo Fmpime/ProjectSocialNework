@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./PostItem.module.css";
-const PostItem = () => {
+const PostItem = (props) => {
     const a =()=>{
         return Date()
     }
@@ -13,9 +13,9 @@ const PostItem = () => {
       <div className={classes.text__box}>
         <h4>NickName send:</h4>
       <div className={classes.post__content}>
-        <h3>davadvadv</h3>
-        <p className={classes.message}>qfveeqeveqvqevqevqevvvvvvvvvvvvqevqevqevqevvkugsufvddddddddddddddddddddddddddddddddddddddddddljfdjhgsdhsdvhvdfhv</p>
-        <div className={classes.post__likes}>likes:</div>
+        <h3>{props.heading}</h3>
+        <p className={classes.message}>{props.content}</p>
+        <div className={classes.post__likes}>likes:{props.likes}</div>
         <time>{`${a()}`}</time>
       </div>
       </div>
