@@ -5,6 +5,14 @@
     
     
 }
+.mymessage img{
+    height: 4em;
+    width: 4em;
+}
+.friendmessage img{
+    height: 4em;
+    width: 4em;
+}
 .friendmessage{
     display: block;
     text-align: left;

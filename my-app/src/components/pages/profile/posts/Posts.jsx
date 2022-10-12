@@ -7,7 +7,7 @@ const Posts = (props) => {
   return (
     <div className={classes.posts}>
       <NewPost />
-      {props.postItemData.map(post=>{ return <PostItem  postItemData={post.id} content={post.content} heading={post.heading} likes={post.likes}/>})}
+      {props.postItemData.map(post=>{ return <PostItem  post={post}/>})}
 
     </div>
   );

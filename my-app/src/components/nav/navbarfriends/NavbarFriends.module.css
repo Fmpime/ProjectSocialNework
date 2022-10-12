@@ -1,0 +1,17 @@
+.navbar__friends img{
+    all: unset;
+    height:4em;
+    width:4em;
+    border-radius: 50%;
+    align-self: center;
+}
+.navbar__friends{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height:auto;
+}
+.navbar__friends h4{
+    all: unset;
+    text-align: center;
+}

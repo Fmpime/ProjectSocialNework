@@ -14,7 +14,7 @@ function App({state}) {
   return (
     <div className="App">
       <Header />
-      <Navbar />
+      <Navbar state={state.messages.dialogsData}/>
       <div className="app__pages__content">
         <Routes>
           <Route
