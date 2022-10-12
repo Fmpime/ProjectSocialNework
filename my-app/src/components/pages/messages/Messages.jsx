@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import Dialog from "./dialogs/Dialog";
 import Message from "./message/Message";
 import classes from "./Messages.module.css";
-const Messages = (props) => {
-
+const Messages = ({state}) => {
   return (
     <div className={classes.messages}>
-      <Dialog dialogsData={props.dialogsData}/>
+      <Dialog dialogsData={state.dialogsData}/>
       <hr />
-      <Message messageData={props.messageData}/>
+      <Message messageData={state.messageData} myId={state.myId}/>
     </div>
   );
 };

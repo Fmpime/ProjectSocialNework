@@ -1,12 +1,13 @@
 .dialogs__items{
   all: unset;
   display: flex;
-  justify-content: center;
+  justify-content: justify;
   align-items: center;
   height: 100%;
   width: 100%;
   cursor: pointer;
-  border-radius: 1.2em;
+  border-top-left-radius: 1.2em;
+  border-bottom-left-radius: 1.2em;
   transition: all 0.1s ease-in-out;
 
 }
@@ -19,4 +20,11 @@
 .dialogs__items:focus {
   background: rgb(155, 14, 119);
   outline: 2px auto;
+}
+.dialogs__items img{
+  all: unset;
+  border-radius: 50%;
+  height: 2em;
+  width:2em;
+  margin-left: 1em;
 }

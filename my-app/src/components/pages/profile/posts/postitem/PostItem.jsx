@@ -4,6 +4,7 @@ const PostItem = (props) => {
     const a =()=>{
         return Date()
     }
+    console.log(props)
   return (
     <div className={classes.post_item}>
       <img

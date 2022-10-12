@@ -9,7 +9,8 @@ import News from "./components/pages/news/News";
 import Profile from "./components/pages/profile/Profile";
 import Settings from "./components/pages/settings/Music";
 
-function App(props) {
+function App({state}) {
+  
   return (
     <div className="App">
       <Header />
@@ -19,18 +20,18 @@ function App(props) {
           <Route
             path="/profile"
             element={
-              <Profile 
-              postItemData={props.postItemData} 
+              <Profile
+              state= {state.profile} 
               
               />}
           />
 
           <Route
-            path="/messages*"
+            path="/messages/*"
             element={
               <Messages
-                dialogsData={props.dialogsData}
-                messageData={props.messageData}
+              state={state.messages}
+
               />
             }
           />

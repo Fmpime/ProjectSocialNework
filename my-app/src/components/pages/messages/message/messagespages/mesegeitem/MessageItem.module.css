@@ -1,5 +1,11 @@
-.messagespage{
-    height:100%;
-    width:100%;
+.mymessage{
+    display: block;
+    text-align: right;
+
     
+    
+}
+.friendmessage{
+    display: block;
+    text-align: left;
 }

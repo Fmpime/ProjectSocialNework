@@ -1,15 +1,22 @@
-import React from 'react';
+import React from "react";
 import classes from "../Messages.module.css";
-import MessagesPage from './messagespages/mesegeitem/MessagesItem';
-const Message = (props) => {
-    
-    return (
-        <div className={classes.messages__block}>
-        {props.messageData.map((message) => {
-          return <MessagesPage message={message.message} />;
-        })}
-      </div>
-    );
-}
+import UserMessagesItem from "./messagespages/mesegeitem/UserMessagesItem";
+const Message = (props,{myId}) => {
+  console.log(props);
+  return (
+    <div className={classes.messages__block}>
+      {props.messageData.map((props) => {
+        return (
+          
+          <UserMessagesItem
+            message={props.message}
+            userId={props.userId}
+            myId={myId}
+          />
+        );
+      })}
+    </div>
+  );
+};
 
 export default Message;
