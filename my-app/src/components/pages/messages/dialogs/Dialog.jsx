@@ -6,7 +6,7 @@ const Dialog = (props) => {
     return (
         <div className={classes.dialog}>
         {props.dialogsData.map((dialog) => {
-          return <DialogsItem name={dialog.name} id={dialog.id} />;
+          return <DialogsItem name={dialog._name} id={dialog._id} />;
         })}
       </div>
     );

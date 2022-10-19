@@ -1,19 +1,36 @@
 .mymessage{
-    display: block;
-    text-align: right;
-
+    display: flex;
+    margin-top:1em;
+    margin-left:auto;
+    justify-content:right;
+    text-align: left;
     
     
+}
+.mymessage p{
+    display: inline-block;
+    word-wrap:break-word;
+    max-width: 20em;
 }
 .mymessage img{
     height: 4em;
     width: 4em;
+    margin-left: 2em;
 }
 .friendmessage img{
     height: 4em;
     width: 4em;
+    margin-right: 2em;
 }
 .friendmessage{
     display: block;
     text-align: left;
+    margin-top:1em;
+    word-wrap:break-word;
+    justify-content:left;
+}
+.friendmessage p{
+    display: inline-block;
+    word-wrap:break-word;
+    max-width: 20em;
 }

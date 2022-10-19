@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import "./App.css";
 import Header from "./components/header/Header";
 import Navbar from "./components/nav/Navbar";
@@ -9,20 +9,18 @@ import News from "./components/pages/news/News";
 import Profile from "./components/pages/profile/Profile";
 import Settings from "./components/pages/settings/Music";
 
-function App({state}) {
-  
+function App({store}) {
   return (
     <div className="App">
       <Header />
-      <Navbar state={state.messages.dialogsData}/>
+      <Navbar friends={store.getState().messages}/>
       <div className="app__pages__content">
         <Routes>
           <Route
             path="/profile"
             element={
               <Profile
-              state= {state.profile} 
-              
+              store={store}
               />}
           />
 
@@ -30,8 +28,7 @@ function App({state}) {
             path="/messages/*"
             element={
               <Messages
-              state={state.messages}
-
+              store={store}
               />
             }
           />

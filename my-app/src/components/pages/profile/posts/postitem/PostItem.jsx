@@ -1,10 +1,13 @@
 import React from "react";
 import classes from "./PostItem.module.css";
 const PostItem = (props) => {
+<<<<<<< HEAD
+=======
     const a =()=>{
         return Date()
     }
-    console.log(props)
+    
+>>>>>>> 13df775fae716b50a420ad7c160450bd33bd1cea
   return (
     <div className={classes.post_item}>
       <img
@@ -17,7 +20,7 @@ const PostItem = (props) => {
         <h3>{props.heading}</h3>
         <p className={classes.message}>{props.content}</p>
         <div className={classes.post__likes}>likes:{props.likes}</div>
-        <time>{`${a()}`}</time>
+        <time>{props.date}</time>
       </div>
       </div>
       

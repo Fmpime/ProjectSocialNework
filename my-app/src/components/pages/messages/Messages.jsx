@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { Route, Router } from "react-router-dom";
+import React from "react";
 import Dialog from "./dialogs/Dialog";
-import Message from "./message/Message";
+import MessageContainer from "./message/MessageContainer";
 import classes from "./Messages.module.css";
-const Messages = ({state}) => {
+const Messages = ({store}) => {
   return (
     <div className={classes.messages}>
-      <Dialog dialogsData={state.dialogsData}/>
+      <Dialog dialogsData={store.getState().messages.getDialogsData()} />
       <hr />
-      <Message messageData={state.messageData} myId={state.myId}/>
+      <MessageContainer
+      store={store}
+      />
     </div>
   );
 };

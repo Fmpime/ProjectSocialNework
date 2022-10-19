@@ -1,24 +1,42 @@
-import React, {useState} from "react";
+import React from "react";
 import Button from "../../../../UI/button/Button";
 
 import classes from "./NewPost.module.css";
-const NewPost = () => {
-    // const [postCreator, setPostCreator] = useState([ ])
-    const [message, setMessage] = useState(' ');
-    const [heading, setHeading] = useState(' ');
-    // const postCreatorfunc=()=>{
-    //     let newPost=[<PostItem message heading />]
-    //     setPostCreator([[...postCreator,newPost]])
-    // }
-    const setMessFun = (e)=>{
-       
-         setMessage(e.currentTarget.value)
+<<<<<<< HEAD
+
+
+
+const NewPost = (props) => {
+=======
+const NewPost = (props) => {
+
+>>>>>>> 13df775fae716b50a420ad7c160450bd33bd1cea
+    const newPostMessageElement = React.createRef()
+    const newPostHeadingElement = React.createRef()
+    const addPost = () =>{
+      
+      props.addPost()
+      
+    }
+    const updaterHeadF=()=>{
+      let heading = newPostHeadingElement.current.value
+<<<<<<< HEAD
+      props.updaterHeadF(heading)
+=======
+      props.updaterHead(heading)
+>>>>>>> 13df775fae716b50a420ad7c160450bd33bd1cea
     
     }
-    const setHeadingFun = (e)=>{
-       
-         setHeading(e.currentTarget.value)
+    const updaterContentF=()=>{
+      let content = newPostMessageElement.current.value
+<<<<<<< HEAD
+      props.updaterContentF(content)
+=======
+      props.updaterContent(content)
+>>>>>>> 13df775fae716b50a420ad7c160450bd33bd1cea
     }
+
+    
   return (
     <div className={classes.new__post}>
       <form>
@@ -26,18 +44,22 @@ const NewPost = () => {
         <input
           type="text"
           placeholder="heading"
-          onChange={()=>setHeadingFun()}
+          ref={newPostHeadingElement}
           className={classes.text__head}
+          value={props.newPostHead}
+          onChange={updaterHeadF}
         />
         <textarea
           placeholder="Write something here..."
           cols="80"
           rows="10"
           name="a"
-          onChange={(e)=>setMessFun(e)}
+          ref={newPostMessageElement}
           className={classes.text__area}
+          value={props.newPostContent}
+          onChange={updaterContentF}
         />
-        <Button />
+        <Button nameButton='Send post' onclick={addPost} />
       </form>
     </div>
   );

@@ -15,16 +15,20 @@
     border-top-left-radius: 1.2em;
     border-bottom-left-radius: 1.2em;
     box-shadow:0 0 10px;
-
+    height:20em;
+    overflow: hidden;
   }
   .messages__block{
     display: grid;
+    height:42em;
     grid-template-rows:auto;
     align-items: center;
     padding: 1em;
     background: rgb(241, 183, 183);
-    border-radius: 1.2em;
+    border-top-right-radius: 1.2em;
+    border-bottom-right-radius:1.2em;
     box-shadow:0 0 10px;
+    overflow: scroll;
   }
   
  
