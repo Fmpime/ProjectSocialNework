@@ -1,13 +1,6 @@
 import React from "react";
 import classes from "./PostItem.module.css";
 const PostItem = (props) => {
-<<<<<<< HEAD
-=======
-    const a =()=>{
-        return Date()
-    }
-    
->>>>>>> 13df775fae716b50a420ad7c160450bd33bd1cea
   return (
     <div className={classes.post_item}>
       <img

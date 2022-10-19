@@ -1,9 +1,7 @@
 import React from "react";
 import Button from "../../../UI/button/Button";
 import classes from "../Messages.module.css";
-import MessageInput from "./messageinput/MessageInput.jsx";
 import UserMessagesItem from "./messagespages/mesegeitem/UserMessagesItem";
-<<<<<<< HEAD
 const Message = (props) => {
   console.log(props)
   const inTextArea = React.createRef()
@@ -13,13 +11,6 @@ const Message = (props) => {
   const updaterMessage=()=>{
     let message = inTextArea.current.value
     props.updaterMessage(message)
-=======
-const Message = (props,{myId}) => {
-  const inTextArea = React.createRef()
-  const newMessage = ()=>{
-    let text =  inTextArea.current.value;
-    alert(text)
->>>>>>> 13df775fae716b50a420ad7c160450bd33bd1cea
   }
   return (
     <div>
@@ -34,7 +25,6 @@ const Message = (props,{myId}) => {
           />
         );
       })}
-<<<<<<< HEAD
       </div>
       <textarea
     style={{display:'block',all:'unset',width:'45em',height:'4em',border:'2px solid teal',margin:'1em auto'}}
@@ -46,11 +36,6 @@ const Message = (props,{myId}) => {
     ></textarea>
       <Button onclick={addMessage} nameButton='Send message'/>
       </div>
-=======
-      <MessageInput inTextArea={inTextArea} />
-      <Button onClick={newMessage} nameButton='Send message'/>
-    </div>
->>>>>>> 13df775fae716b50a420ad7c160450bd33bd1cea
   );
 };
 
