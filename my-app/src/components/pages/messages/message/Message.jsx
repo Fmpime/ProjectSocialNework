@@ -3,7 +3,6 @@ import Button from "../../../UI/button/Button";
 import classes from "../Messages.module.css";
 import UserMessagesItem from "./messagespages/mesegeitem/UserMessagesItem";
 const Message = (props) => {
-  console.log(props)
   const inTextArea = React.createRef()
   const addMessage = () =>{
     props.addMessage()
@@ -21,7 +20,7 @@ const Message = (props) => {
           <UserMessagesItem
             message={props._message}
             userId={props._userId}
-            myId={props._myId}
+            myId={props.myId}
           />
         );
       })}

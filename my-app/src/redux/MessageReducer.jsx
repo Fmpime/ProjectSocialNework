@@ -19,32 +19,27 @@ let initialState = {
         { _id: "4", _name: "Masha Medova" },
         { _id: "5", _name: "Lyosha Makarov" },
       ],
-      getNewMessage(){
-        return this._newMessage;
-      },
-      getMessagesData(){
-        return this._messageData;
-      },
-      getDialogsData(){
-        return this._dialogsData;
-      },
+      
 }
 
 const messageReducer = (state=initialState, action) => {
   switch (action.type) {
-    case ADD_MESSAGE:
+    case ADD_MESSAGE:{
       let newMessage = {
         _userId: 2,
         _id: "1",
         _message: state._newMessage,
       };
-      state._messageData.push(newMessage);
-      state._newMessage = "";
-
-      return state;
+      return{
+        ...state,
+      _messageData:[...state._messageData,{...newMessage}],
+      _newMessage : "",
+    }}
     case UPDATER_MESSAGE:
-      state._newMessage = action.newMessage;
-      return state;
+      return{
+        ...state,
+      _newMessage: action.newMessage,
+    }
     default:
       return state;
   }

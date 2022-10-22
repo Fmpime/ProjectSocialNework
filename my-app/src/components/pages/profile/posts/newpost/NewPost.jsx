@@ -6,6 +6,7 @@ import classes from "./NewPost.module.css";
 
 
 const NewPost = (props) => {
+  console.log(props)
     const newPostMessageElement = React.createRef()
     const newPostHeadingElement = React.createRef()
     const addPost = () =>{

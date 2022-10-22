@@ -4,23 +4,24 @@ import {
   addMessageActionCreator,
   ubtaterMessageActionCreator,
 } from "../../../../redux/MessageReducer";
-const MessageContainer = ({store}) => {
-  const addMessage = () => {
-    store.dispatch(addMessageActionCreator());
-  };
-  const updaterMessage = (message) => {
-    store.dispatch(ubtaterMessageActionCreator(message));
-  };
-  return (
-    <Message
-      myId={store.getState().messages._myId}
-      addMessage={addMessage}
-      updaterMessage={updaterMessage}
-      messagesData={store.getState().messages._messageData}
-      newMessage={store.getState().messages._newMessage}
-      
-    />
-  );
-};
+import { connect } from "react-redux";
+
+
+
+const mapStateToProps = (state) =>{
+  return{
+      myId: state.messages._myId,
+      messagesData:state.messages._messageData,
+      newMessage: state.messages._newMessage,
+  }
+}
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    addMessage:() =>{dispatch(addMessageActionCreator());},
+    updaterMessage:(message)=>{dispatch(ubtaterMessageActionCreator(message));},
+  }
+}
+
+const MessageContainer = connect(mapStateToProps,mapDispatchToProps)(Message)
 
 export default MessageContainer;

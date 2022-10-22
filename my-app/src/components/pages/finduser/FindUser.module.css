@@ -1,0 +1,31 @@
+.user__profile__item{
+    display: grid;
+    margin: 1em auto 0em;
+    height:8em;
+    width:40em;
+    border:2px solid teal;
+    border-radius: 4px;
+}
+.user__profile__item>div>div>img{
+    height:3em;
+    width:3em;
+    margin:0.5em auto auto 0.5em;
+}
+.user__profile__item{
+    display:grid;
+    grid-template-rows: 3fr 1fr;
+}
+
+.user_profile_info{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+.user_profile_info_text{
+    display: flex;
+    margin: 0;
+    line-height: 0.5px;
+    flex-direction: column;
+}
+.user_profile_info_text h4{
+    margin-left: 0;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import {
   addPostActionCreator,
   updaterContentActionCreator,
@@ -6,28 +7,26 @@ import {
 } from "../../../../../redux/ProfileReducer";
 import NewPost from "./NewPost";
 
-const NewPostContainer = ({ store }) => {
-  console.log(store.getState().profile)
-  const addPost = () => {
-    store.dispatch(addPostActionCreator());
-  };
-  const updaterHeadF = (heading) => {
-    store.dispatch(updaterHeadActionCreator(heading));
-  };
-  const updaterContentF = (content) => {
-    store.dispatch(updaterContentActionCreator(content));
-  };
+const mapStateToProps = (state) =>{
+  return{
+    newPostHead: state.profile._newPostHead,
+    newPostContent: state.profile._newPostContent,
+  }
+}
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    addPost: () => {
+      dispatch(addPostActionCreator());
+    },
+    updaterHeadF: (heading) => {
+      dispatch(updaterHeadActionCreator(heading));
+    },
+    updaterContentF: (content) => {
+      dispatch(updaterContentActionCreator(content));
+    },
+  }
+}
 
-  return (
-    <NewPost
-      addPost={addPost}
-      updaterHeadF={updaterHeadF}
-      updaterContentF={updaterContentF}
-      newPostHead={store.getState().profile.getNewPostHead()}
-      newPostContent={store.getState().profile.getNewPostContent()}
-   
-    />
-  );
-};
+const NewPostContainer = connect(mapStateToProps,mapDispatchToProps)(NewPost)
 
 export default NewPostContainer;

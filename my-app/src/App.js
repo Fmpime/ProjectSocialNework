@@ -3,6 +3,7 @@ import { Routes, Route} from "react-router-dom";
 import "./App.css";
 import Header from "./components/header/Header";
 import Navbar from "./components/nav/Navbar";
+import FindUsers from "./components/pages/finduser/FindUsers";
 import Messages from "./components/pages/messages/Messages";
 import Music from "./components/pages/music/Music";
 import News from "./components/pages/news/News";
@@ -19,9 +20,12 @@ function App({store}) {
           <Route
             path="/profile"
             element={
-              <Profile
-              store={store}
-              />}
+              <Profile/>}
+          />
+          <Route
+            path="/findusers"
+            element={
+              <FindUsers/>}
           />
 
           <Route

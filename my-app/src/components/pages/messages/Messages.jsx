@@ -5,10 +5,10 @@ import classes from "./Messages.module.css";
 const Messages = ({store}) => {
   return (
     <div className={classes.messages}>
-      <Dialog dialogsData={store.getState().messages.getDialogsData()} />
+      <Dialog dialogsData={store.getState().messages._dialogsData} />
       <hr />
       <MessageContainer
-      store={store}
+
       />
     </div>
   );
