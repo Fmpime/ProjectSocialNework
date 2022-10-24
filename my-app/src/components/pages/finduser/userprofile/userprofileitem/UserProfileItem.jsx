@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./../../FindUser.module.css";
 const UserProfileItem = (props) => {
+  console.log(props.state)
     const follow=(id)=>{
         props.follow(id)
         
@@ -12,19 +13,24 @@ const UserProfileItem = (props) => {
     <div className={classes.user__profile__item}>
       <div className={classes.user_profile_info}>
         <div>
-          <img src={props.state._img} alt="qwe" />
+          <img src={
+            props.state.photos.small != null
+            ?props.state.photos.small
+            :"https://bain.design/wp-content/uploads/2014/08/People-Avatar-Set-Rectangular-12.jpg"}
+            alt="qwe" />
           <place>
-            {props.state._Country},{props.state._State}
+            Country,
+            State
           </place>
         </div>
         <div className={classes.user_profile_info_text}>
-          <h4>{props.state._NickName}</h4>
-          <p>{props.state._userStaus}</p>
+          <h4>{props.state.name}</h4>
+          <p>{props.state.status}</p>
         </div>
       </div>
-      {props.state._followStatus
-        ?<button onClick={()=>follow(props.state._id)}>follow</button>
-        :<button onClick={()=>unfollow(props.state._id)}>unfollow</button>
+      {props.state.followed
+        ?<button onClick={()=>follow(props.state.id)}>unfollow</button>
+        :<button onClick={()=>unfollow(props.state.id)}>follow</button>
         }
     </div>
   );
