@@ -1,23 +1,17 @@
-import React from 'react';
-import PostItem from './PostItem';
 
+import { connect } from 'react-redux';
+import PostArrow from './PostArrow';
 
+const mapStateToProps = (state) =>{
+    return{
+        postItemData:state.profile._postItemData,
+    }
+  }
+  const mapDispatchToProps = (dispatch) =>{
+    
+  }
+  
 
-const PostArrow = (props) => {
-    return (
-        <div>
-            {props.postItemData.map((state) => {
-          return (
-            <PostItem
-              likes={state._likes}
-              heading={state._heading}
-              content={state._content}
-              date={state._date}
-            />
-          );
-        })}
-        </div>
-    );
-}
+const PostArrowContainer = connect(mapStateToProps,mapDispatchToProps)(PostArrow)
 
-export default PostArrow;
+export default PostArrowContainer;

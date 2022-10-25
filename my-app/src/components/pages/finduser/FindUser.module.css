@@ -35,6 +35,25 @@
     word-wrap:break-word;
 }
 .User_profile_box{
-    max-height: 47em;
-    overflow-y:scroll;
+
+}
+.user_profile_page{
+    display: grid;
+    place-items: center;
+    grid-template-rows:4em 1fr 4em;
+}
+.user_profile_list{
+    display: flex;
+    align-items: center;
+    max-width: 25em;
+    justify-content: left;
+    overflow: scroll;
+}
+.selected_page{
+    color: gold;
+    transform:scale(1.15);
+}
+.default_page{
+    margin-left: 1em;
+    cursor: pointer;
 }

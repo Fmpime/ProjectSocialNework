@@ -1,4 +1,7 @@
 .navbar{
+    position:fixed;
+    margin-top: 6em;
+    margin-left: 1em;
     grid-area: n;
     display: flex;
     flex-direction: column;
@@ -6,7 +9,8 @@
     background:wheat;
     border-radius: 1.2em;
     box-shadow:0 0 10px;
-    height:50em;
+    width:10em;
+    z-index: 2000;
   }
   .link{
     all: unset;

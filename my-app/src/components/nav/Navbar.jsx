@@ -23,8 +23,6 @@ const Navbar = () => {
       <Link className={classes.link} to="/findusers">
         <div>Find users</div>
       </Link>
-      
-      <NavbarFriendsContainer/>
     </nav>
   );
 };

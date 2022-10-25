@@ -1,7 +1,6 @@
 import React from "react";
 import classes from "./../../FindUser.module.css";
 const UserProfileItem = (props) => {
-  console.log(props.state)
     const follow=(id)=>{
         props.follow(id)
         

@@ -12,7 +12,7 @@
     word-wrap:break-word;
     max-width: 20em;
 }
-.mymessage img{
+.mymessage>img{
     height: 4em;
     width: 4em;
     margin-left: 2em;

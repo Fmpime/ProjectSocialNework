@@ -1,15 +1,17 @@
 
 .header{
-    margin-top: 1em;
+    display: block;
+    position: fixed;
+    width: 100%;
     height: 4em;
     border-radius: 1.2em;
     grid-area:h;
     background:turquoise;
     box-shadow:0 0 10px;
+    z-index: 2000;
   }
 .header img{
     margin: auto;
-    grid-area:h;
     width:4em;
     height:4em;
     border-radius: 1.2em;

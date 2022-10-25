@@ -1,6 +1,6 @@
 import React from "react";
 import NewPostContainer from "./newpost/NewPostContainer";
-import PostArrowContainer from "./postitem/PostArrow";
+import PostArrowContainer from "./postitem/PostArrowContainer";
 import classes from "./Posts.module.css";
 const Posts = () => {
   return (
