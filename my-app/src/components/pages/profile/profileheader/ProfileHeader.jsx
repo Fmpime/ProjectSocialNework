@@ -1,17 +1,17 @@
 import React from "react";
 import classes from "./ProfileHeader.module.css";
-const ProfileHeader = () => {
+const ProfileHeader = (props) => {
   return (
-    <div className={classes.content__head}>
+    <div style={{background:`url('${props.profileState.photos.large}') center black no-repeat`}} className={classes.content__head}>
       <div className={classes.avatar__and__name}>
         <img
-          src="https://bain.design/wp-content/uploads/2014/08/People-Avatar-Set-Rectangular-12.jpg"
+          src={props.profileState.photos.small}
           alt="zxc"
         />
-        <span>NickName</span>
+        <span>{props.profileState.fullName}</span>
       </div>
     </div>
-  );
-};
+  );}
+  
 
 export default ProfileHeader;

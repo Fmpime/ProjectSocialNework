@@ -1,11 +1,11 @@
 import React from "react";
-import Dialog from "./dialogs/Dialog";
+import DialogContainer from "./dialogs/DialogContainer";
 import MessageContainer from "./message/MessageContainer";
 import classes from "./Messages.module.css";
 const Messages = ({store}) => {
   return (
     <div className={classes.messages}>
-      <Dialog dialogsData={store.getState().messages._dialogsData} />
+      <DialogContainer />
       <hr />
       <MessageContainer
 

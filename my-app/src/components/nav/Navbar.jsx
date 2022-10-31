@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./Navbar.module.css";
-import NavbarFriendsContainer from "./navbarfriends/NavbarFriendsContainer";
 const Navbar = () => {
   return (
     <nav className={classes.navbar}>
-      <Link className={classes.link} to="/profile">
+      <Link className={classes.link} to="/profile/1">
         <div>Profile</div>
       </Link>
       <Link className={classes.link} to="/messages">

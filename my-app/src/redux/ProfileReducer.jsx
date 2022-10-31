@@ -1,13 +1,15 @@
 const ADD_POST = "ADD-POST";
 const UPDATER_HEAD = "UPDATER-HEAD";
 const UPDATER_CONTENT = "UPDATER-CONTENT";
+const SET_USER_PROFILE = "SET-USER-PROFILE"
+const FETCHING_REGULATOR = "FETCHING-REGULATOR";
 let initialState = {
   _postItemData: [
     {
       _id: "1",
       _content:
         "daite mne belie crilya va utopayu v imute hcherex trrni  i provoffs v nrbo  toks nr muchicsd",
-      _heading: "filmi dla etey",
+      _heading: "filmi dla detey",
       _likes: "12",
     },
     {
@@ -26,10 +28,17 @@ let initialState = {
   ],
   _newPostHead: "",
   _newPostContent: "",
+  profile:{aboutMe:'',photos:{small:'',large:''},fullName:'NickName',userId:'1'},
+  isFetching: true,
 };
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
+    case FETCHING_REGULATOR:
+      return {
+        ...state,
+        isFetching: action.isFetching,
+      };
     case ADD_POST: {
       let newPost = {
         _id: 4,
@@ -49,6 +58,12 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         _newPostContent: action.newContent,
+      };
+    }
+    case SET_USER_PROFILE: {
+      return {
+        ...state,
+        profile: action.profile,
       };
     }
     case UPDATER_HEAD: {
@@ -71,4 +86,11 @@ export const updaterHeadActionCreator = (heading) => {
 export const updaterContentActionCreator = (content) => {
   return { type: UPDATER_CONTENT, newContent: content };
 };
+export const setUserProfileActionCreaor = (profile) => {
+  return { type: SET_USER_PROFILE,  profile };
+};
+export const fetchingRegulatorActionCreator = (isFetching) => {
+  return { type: FETCHING_REGULATOR, isFetching: isFetching };
+};
+
 export default profileReducer;

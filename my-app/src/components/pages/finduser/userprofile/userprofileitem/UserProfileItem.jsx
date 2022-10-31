@@ -1,6 +1,21 @@
+import axios from "axios";
 import React from "react";
+import { Link } from "react-router-dom";
 import classes from "./../../FindUser.module.css";
 const UserProfileItem = (props) => {
+
+  axios
+  .get('https://social-network.samuraijs.com/api/1.0/follow/'+props.state.id,{withCredentials:true})
+  .then(response=>{
+   if(response.data !== props.state.followed){
+    props.followDetector(response.data,props.state.id)
+   }
+  }
+    )
+
+
+
+
     const follow=(id)=>{
         props.follow(id)
         
@@ -12,11 +27,13 @@ const UserProfileItem = (props) => {
     <div className={classes.user__profile__item}>
       <div className={classes.user_profile_info}>
         <div>
+          <Link to={"/profile/"+props.state.id}>
           <img src={
             props.state.photos.small != null
             ?props.state.photos.small
             :"https://bain.design/wp-content/uploads/2014/08/People-Avatar-Set-Rectangular-12.jpg"}
             alt="qwe" />
+          </Link>
           <place>
             Country,
             State
@@ -28,8 +45,8 @@ const UserProfileItem = (props) => {
         </div>
       </div>
       {props.state.followed
-        ?<button onClick={()=>follow(props.state.id)}>unfollow</button>
-        :<button onClick={()=>unfollow(props.state.id)}>follow</button>
+        ?<button onClick={()=>unfollow(props.state.id)}>unfollow</button>
+        :<button onClick={()=>follow(props.state.id)}>follow</button>
         }
     </div>
   );

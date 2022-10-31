@@ -1,20 +1,29 @@
+.header {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 4em;
+  border-radius: 1.2em;
+  grid-area: h;
+  background: turquoise;
+  box-shadow: 0 0 10px;
+  z-index: 2000;
+  justify-content: space-between;
+}
 
-.header{
-    display: block;
-    position: fixed;
-    width: 100%;
-    height: 4em;
-    border-radius: 1.2em;
-    grid-area:h;
-    background:turquoise;
-    box-shadow:0 0 10px;
-    z-index: 2000;
-  }
-.header img{
-    margin: auto;
-    width:4em;
-    height:4em;
-    border-radius: 1.2em;
-    box-sizing: border-box;
-    border: 2px solid black;
-  }
+.header img {
+  display: flex;
+  margin: 0;
+  width: 4em;
+  height: 4em;
+  border-radius: 1.2em;
+  box-sizing: border-box;
+  border: 2px solid black;
+}
+
+.loginblock {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  color: black;
+}

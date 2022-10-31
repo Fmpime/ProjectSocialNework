@@ -6,7 +6,7 @@
     border:2px solid teal;
     border-radius: 4px;
 }
-.user__profile__item>div>div>img{
+.user__profile__item>div>div>a>img{
     height:3em;
     width:3em;
     margin:0.5em auto auto 0.5em;

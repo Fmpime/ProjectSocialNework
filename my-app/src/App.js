@@ -7,23 +7,23 @@ import FindUsers from "./components/pages/finduser/FindUsers";
 import Messages from "./components/pages/messages/Messages";
 import Music from "./components/pages/music/Music";
 import News from "./components/pages/news/News";
-import Profile from "./components/pages/profile/Profile";
+import ProfileConainer from "./components/pages/profile/ProfileContainer";
 import Settings from "./components/pages/settings/Music";
 
-function App({store}) {
+function App() {
   return (
     <div className="App">
       <Header />
-      <Navbar friends={store.getState().messages}/>
+      <Navbar/>
       <div className="app__pages__content">
         <Routes>
           <Route
-            path="/profile"
+            path="/profile/:userId"
             element={
-              <Profile/>}
+              <ProfileConainer />}
           />
           <Route
-            path="/findusers"
+            path="/findusers/*"
             element={
               <FindUsers/>}
           />
@@ -32,7 +32,6 @@ function App({store}) {
             path="/messages/*"
             element={
               <Messages
-              store={store}
               />
             }
           />
