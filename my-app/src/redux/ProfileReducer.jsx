@@ -28,7 +28,7 @@ let initialState = {
   ],
   _newPostHead: "",
   _newPostContent: "",
-  profile:{aboutMe:'',photos:{small:'',large:''},fullName:'NickName',userId:'1'},
+  profile:{aboutMe:'',photos:{small:'',large:''},fullName:'NickName',userId:null},
   isFetching: true,
 };
 

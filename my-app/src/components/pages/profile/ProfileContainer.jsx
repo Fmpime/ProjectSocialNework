@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
 import {
@@ -6,40 +5,33 @@ import {
   setUserProfileActionCreaor,
 } from "../../../redux/ProfileReducer";
 import Profile from "./Profile";
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { getUserProfile } from "../../../API/Api";
+
+
+
+//custom with router(old code)
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
-      let location = useLocation();
-      let navigate = useNavigate();
-      let params = useParams();
-      return (
-          <Component
-              {...props}
-              router={{ location, navigate, params }}
-          />
-      );
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return <Component {...props} router={{ location, navigate, params }} />;
   }
 
   return ComponentWithRouterProp;
 }
 
-
 class ProfileConainer extends React.Component {
   componentDidMount() {
-    let userId = this.props.router.params.userId
-    this.props.fetchingRegilator(true);
-    axios
-      .get("https://social-network.samuraijs.com/api/1.0/profile/"+userId)
-      .then((response) => {
-        this.props.fetchingRegilator(false);
-        this.props.setUserProfile(response.data);
-      });
-  }
-
+      let userId = this.props.router.params.userId;
+      this.props.fetchingRegilator(true);
+      getUserProfile(userId).then((data) => {
+        debugger
+          this.props.fetchingRegilator(false);
+          this.props.setUserProfile(data);
+        });
+      }
   render() {
     return (
       <>
@@ -56,7 +48,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const URLDataContainerComponent = withRouter(ProfileConainer)
+const URLDataContainerComponent = withRouter(ProfileConainer);
 
 export default connect(mapStateToProps, {
   setUserProfile: setUserProfileActionCreaor,

@@ -5,7 +5,6 @@ const SET_FIND_USER = "SET-FIND-USER";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_USER_COUNT = "SET-TOTAL-USER-COUNT";
 const FETCHING_REGULATOR = "FETCHING-REGULATOR";
-const FOLLOW_DETECTOR = "FOLLOW-DETECTOR"
 let initialState = {
   _findUserData: [],
   pageSize: 10,
@@ -15,15 +14,6 @@ let initialState = {
 };
 const findUserReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FOLLOW_DETECTOR:
-      return {
-        ...state,
-        _findUserData: state._findUserData.map((el) => {
-          if (el.id === action.id) {
-            return { ...el, followed: action.followed };
-          } else return el;
-        }),
-      };
     case FETCHING_REGULATOR:
       return {
         ...state,
@@ -84,10 +74,6 @@ export const setUsersTotalCountActionCreator = (totalCount) => {
 export const fetchingRegulatorActionCreator = (isFetching) => {
   return { type: FETCHING_REGULATOR, isFetching: isFetching };
 };
-export const followDetectorActionCreator = (followed,id) => {
-  return { type: FOLLOW_DETECTOR,followed,id};
-};
-
 
 
 export default findUserReducer;

@@ -1,19 +1,8 @@
-import axios from "axios";
+
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./../../FindUser.module.css";
 const UserProfileItem = (props) => {
-
-  axios
-  .get('https://social-network.samuraijs.com/api/1.0/follow/'+props.state.id,{withCredentials:true})
-  .then(response=>{
-   if(response.data !== props.state.followed){
-    props.followDetector(response.data,props.state.id)
-   }
-  }
-    )
-
-
 
 
     const follow=(id)=>{

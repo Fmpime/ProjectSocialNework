@@ -2,46 +2,47 @@ import { connect } from "react-redux";
 import {
   fetchingRegulatorActionCreator,
   followActionCreator,
-  followDetectorActionCreator,
   setCurrenPageActionCreator,
   setUserActionCreator,
   setUsersTotalCountActionCreator,
   unfollowActionCreator,
 } from "../../../../redux/FindUserReducer";
-import axios  from "axios";
 import React from "react";
 import UsersProfileItems from "./userprofileitem/UsersProfileItems";
 import Feching from "../../../UI/Fetching/Feching";
+import { follow, getUsers, unfollow } from "../../../../API/Api";
+
+
+
+
+
+
+
 class UserProfileItemsClass extends React.Component {
   componentDidMount() {
     this.props.fetchingRegulator(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
-      )
-      .then((response) => {
+    getUsers(this.props.currentPage,this.props.pageSize)
+      .then((data) => {
         this.props.fetchingRegulator(false);
-        this.props.setUsers(response.data.items);
-        this.props.setTotalCount(response.data.totalCount);
+        this.props.setUsers(data.items);
+        this.props.setTotalCount(data.totalCount);
       });
       
       
   }
   onFollowStatus(id){
-    axios
-    .post(`https://social-network.samuraijs.com/api/1.0/follow/`+id, null,{withCredentials: true})
-    .then((response)=>{
-      if(response.data.resultCode===0){
+    follow(id)
+    .then((data)=>{
+      if(data.resultCode===0){
         this.follow(id)
       }
     })
 
   }
   onUnFollowStatus(id){
-    axios
-    .delete(`https://social-network.samuraijs.com/api/1.0/follow/`+id,{withCredentials: true})
-    .then((response)=>{
-      if(response.data.resultCode===0){
+    unfollow(id)
+    .then((data)=>{
+      if(data.resultCode===0){
         this.unfollow(id)
       }
     })
@@ -49,13 +50,10 @@ class UserProfileItemsClass extends React.Component {
   onsetCurrenPageFunc = (p) => {
     this.props.fetchingRegulator(true);
     this.props.setCurrenPage(p);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`
-      )
-      .then((response) => {
+    getUsers(p,this.props.pageSize)
+      .then((data) => {
         this.props.fetchingRegulator(false);
-        this.props.setUsers(response.data.items);
+        this.props.setUsers(data.items);
       });
   };
   render() {
@@ -71,7 +69,6 @@ class UserProfileItemsClass extends React.Component {
           currentPage={this.props.currentPage}
           follow={this.onFollowStatus.bind(this.props)}
           unfollow={this.onUnFollowStatus.bind(this.props)}
-          followDetector={this.props.followDetector}
         />
       </>
     );
@@ -117,5 +114,4 @@ export default connect(mapStateToProps, {
   setCurrenPage: setCurrenPageActionCreator,
   setTotalCount: setUsersTotalCountActionCreator,
   fetchingRegulator: fetchingRegulatorActionCreator,
-  followDetector:followDetectorActionCreator,
 })(UserProfileItemsClass);
