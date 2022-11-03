@@ -1,7 +1,9 @@
+import { getUserProfile } from "../API/Api";
+
 const ADD_POST = "ADD-POST";
 const UPDATER_HEAD = "UPDATER-HEAD";
 const UPDATER_CONTENT = "UPDATER-CONTENT";
-const SET_USER_PROFILE = "SET-USER-PROFILE"
+const SET_USER_PROFILE = "SET-USER-PROFILE";
 const FETCHING_REGULATOR = "FETCHING-REGULATOR";
 let initialState = {
   _postItemData: [
@@ -28,7 +30,12 @@ let initialState = {
   ],
   _newPostHead: "",
   _newPostContent: "",
-  profile:{aboutMe:'',photos:{small:'',large:''},fullName:'NickName',userId:null},
+  profile: {
+    aboutMe: "",
+    photos: { small: "", large: "" },
+    fullName: "NickName",
+    userId: null,
+  },
   isFetching: true,
 };
 
@@ -49,7 +56,7 @@ const profileReducer = (state = initialState, action) => {
       };
       return {
         ...state,
-        _postItemData: [...state._postItemData,  {...newPost} ],
+        _postItemData: [...state._postItemData, { ...newPost }],
         _newPostContent: "",
         _newPostHead: "",
       };
@@ -87,10 +94,18 @@ export const updaterContentActionCreator = (content) => {
   return { type: UPDATER_CONTENT, newContent: content };
 };
 export const setUserProfileActionCreaor = (profile) => {
-  return { type: SET_USER_PROFILE,  profile };
+  return { type: SET_USER_PROFILE, profile };
 };
 export const fetchingRegulatorActionCreator = (isFetching) => {
   return { type: FETCHING_REGULATOR, isFetching: isFetching };
 };
-
+export const getUserProfileThunkAC = (userId) => {
+  return (dispatch) => {
+    dispatch(fetchingRegulatorActionCreator(true));
+    getUserProfile(userId).then((data) => {
+      dispatch(fetchingRegulatorActionCreator(false));
+      dispatch(setUserProfileActionCreaor(data));
+    });
+  };
+};
 export default profileReducer;

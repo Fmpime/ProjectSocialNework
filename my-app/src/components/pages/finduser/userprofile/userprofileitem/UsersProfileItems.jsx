@@ -30,15 +30,15 @@ const UsersProfileItems = (props) => {
         {props.findUserData.map((state) => {
           return (
             <UserProfileItem
-              followDetector={props.followDetector}
               state={state}
               unfollow={props.unfollow}
               follow={props.follow}
+              buttonDisabler={props.buttonDisabler}
             />
           );
         })}
       </div>
-      <Button onClick={props.setUsersFunc} nameButton="jxdn"></Button>
+      <Button  nameButton="jxdn"></Button>
     </div>
   );
 };

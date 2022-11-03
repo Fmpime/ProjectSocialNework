@@ -7,11 +7,6 @@ const mapStateToProps = (state) =>{
         postItemData:state.profile._postItemData,
     }
   }
-  const mapDispatchToProps = (dispatch) =>{
-    
-  }
-  
-
-const PostArrowContainer = connect(mapStateToProps,mapDispatchToProps)(PostArrow)
+const PostArrowContainer = connect(mapStateToProps,null)(PostArrow)
 
 export default PostArrowContainer;

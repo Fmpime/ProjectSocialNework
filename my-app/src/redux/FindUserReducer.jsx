@@ -1,3 +1,4 @@
+import { follow, getUsers, unfollow } from "../API/Api";
 
 const UNFOLLOW = "UNFOLLOW";
 const FOLLOW = "FOLLOW";
@@ -5,6 +6,9 @@ const SET_FIND_USER = "SET-FIND-USER";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_USER_COUNT = "SET-TOTAL-USER-COUNT";
 const FETCHING_REGULATOR = "FETCHING-REGULATOR";
+const BUTTON_DISABLER = "BUTTON-DISABLER"
+
+
 let initialState = {
   _findUserData: [],
   pageSize: 10,
@@ -14,6 +18,16 @@ let initialState = {
 };
 const findUserReducer = (state = initialState, action) => {
   switch (action.type) {
+    case BUTTON_DISABLER:
+      return {
+        ...state,
+        _findUserData: state._findUserData.map((el) => {
+          if (el.id === action.id) {
+            return { ...el, disableStatus: action.disableStatus };
+          } else return el;
+        }),
+        disableStatus: action.disableStatus,
+      };
     case FETCHING_REGULATOR:
       return {
         ...state,
@@ -72,8 +86,40 @@ export const setUsersTotalCountActionCreator = (totalCount) => {
   return { type: SET_TOTAL_USER_COUNT, totalCount: totalCount };
 };
 export const fetchingRegulatorActionCreator = (isFetching) => {
-  return { type: FETCHING_REGULATOR, isFetching: isFetching };
+  return { type: FETCHING_REGULATOR, isFetching };
 };
+export const buttonDisablerActionCreator = (id,disableStatus) => {
+  return { type: BUTTON_DISABLER,id,disableStatus };
+};
+
+export const getUsersThunkCreator=(currentPage,pageSize)=>{
+return (dispatch)=>{
+  dispatch(fetchingRegulatorActionCreator(true));
+    getUsers(currentPage,pageSize)
+      .then((data) => {
+        dispatch(fetchingRegulatorActionCreator(false));
+        dispatch(setUserActionCreator(data.items));
+        dispatch(setUsersTotalCountActionCreator(data.totalCount));
+})}}
+export const followThunkCreator=(id)=>{
+return (dispatch)=>{
+  follow(id)
+    .then((data)=>{
+      if(data.resultCode===0){
+        dispatch(followActionCreator(id));
+        dispatch(buttonDisablerActionCreator(id,false))
+      }
+    })}}
+export const unfollowThunkCreator=(id)=>{
+return (dispatch)=>{
+  unfollow(id)
+    .then((data)=>{
+      if(data.resultCode===0){
+        dispatch(unfollowActionCreator(id));
+        dispatch(buttonDisablerActionCreator(id,false))
+      }
+    })}}
+
 
 
 export default findUserReducer;

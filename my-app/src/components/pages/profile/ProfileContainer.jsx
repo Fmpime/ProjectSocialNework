@@ -1,12 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  fetchingRegulatorActionCreator,
-  setUserProfileActionCreaor,
+  getUserProfileThunkAC,
 } from "../../../redux/ProfileReducer";
 import Profile from "./Profile";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { getUserProfile } from "../../../API/Api";
 
 
 
@@ -25,13 +23,7 @@ function withRouter(Component) {
 class ProfileConainer extends React.Component {
   componentDidMount() {
       let userId = this.props.router.params.userId;
-      this.props.fetchingRegilator(true);
-      getUserProfile(userId).then((data) => {
-        debugger
-          this.props.fetchingRegilator(false);
-          this.props.setUserProfile(data);
-        });
-      }
+      this.props.getUserProfileThunkAC(userId)}
   render() {
     return (
       <>
@@ -51,6 +43,5 @@ const mapStateToProps = (state) => {
 const URLDataContainerComponent = withRouter(ProfileConainer);
 
 export default connect(mapStateToProps, {
-  setUserProfile: setUserProfileActionCreaor,
-  fetchingRegilator: fetchingRegulatorActionCreator,
+  getUserProfileThunkAC,
 })(URLDataContainerComponent);

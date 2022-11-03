@@ -30,3 +30,11 @@ export const unfollow = (id) => {
       return response.data;
     });
 };
+
+export const authMe= () =>{
+  return instanse
+      .get(`auth/me`)
+      .then(response =>{
+        return response.data
+      })
+}

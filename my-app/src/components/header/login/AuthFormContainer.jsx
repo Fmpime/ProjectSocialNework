@@ -1,23 +1,15 @@
-import axios from "axios";
+
 import React from "react";
 import { connect } from "react-redux";
-import { fetchingRegulatorActionCreator, setUserDataActionCreator } from "../../../redux/AuthReducer";
+import {authMeThunkCreator} from "../../../redux/AuthReducer"
 import AuthForm from "./AuthForm";
 
 class AuthFormContainer extends React.Component {
   componentDidMount() {
-    this.props.fetchingRegulator(true);
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        this.props.setUserData(response)
-        this.props.fetchingRegulator(false);
-      });
+    this.props.authMeThunkCreator()
   }
   render() {
-    return <AuthForm {...this.props.data.data} />;
+    return <AuthForm {...this.props.data} />;
   }
 }
 
@@ -28,7 +20,5 @@ const mstp = (state) => {
 };
 
 export default connect(mstp, {
-    fetchingRegulator:fetchingRegulatorActionCreator,
-    setUserData:setUserDataActionCreator,
-
+  authMeThunkCreator:authMeThunkCreator
 })(AuthFormContainer);
