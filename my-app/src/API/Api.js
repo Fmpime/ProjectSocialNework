@@ -4,37 +4,35 @@ const instanse = axios.create({
   withCredentials: true,
 });
 
-export const getUserProfile = (userId) => {
-  return instanse.get("profile/" + userId).then((response) => {
-    return response.data;
-  });
-};
-export const getUsers = (currentPage,pageSize) => {
-  return instanse
-    .get(`users?page=${currentPage}&count=${pageSize}`)
-    .then((response) => {
+export const userAPI = {
+  getUserProfile(userId) {
+    return instanse.get("profile/" + userId).then((response) => {
       return response.data;
     });
-};
-export const follow = (id) => {
-  return instanse
-  .post(`follow/`+id, null)
-    .then((response) => {
+  },
+  getUsers(currentPage, pageSize) {
+    return instanse
+      .get(`users?page=${currentPage}&count=${pageSize}`)
+      .then((response) => {
+        return response.data;
+      });
+  },
+  follow(id) {
+    return instanse.post(`follow/` + id, null).then((response) => {
       return response.data;
     });
-};
-export const unfollow = (id) => {
-  return instanse
-  .delete(`follow/`+id)
-    .then((response) => {
+  },
+  unfollow(id) {
+    return instanse.delete(`follow/` + id).then((response) => {
       return response.data;
     });
+  },
 };
-
-export const authMe= () =>{
-  return instanse
-      .get(`auth/me`)
-      .then(response =>{
-        return response.data
-      })
-}
+export const headerAPI = {
+  authMe() {
+      return instanse.get(`auth/me`).then((response) => {
+      if(response.data.resultCode===0){
+      return response.data;}
+    });
+  },
+};

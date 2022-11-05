@@ -2,9 +2,10 @@ import React from "react";
 import { Routes, Route} from "react-router-dom";
 import "./App.css";
 import Header from "./components/header/Header";
+import Login from "./components/header/login/login/Login";
 import Navbar from "./components/nav/Navbar";
 import FindUsers from "./components/pages/finduser/FindUsers";
-import Messages from "./components/pages/messages/Messages";
+import MessagesContainer from "./components/pages/messages/MessagesContainer";
 import Music from "./components/pages/music/Music";
 import News from "./components/pages/news/News";
 import ProfileConainer from "./components/pages/profile/ProfileContainer";
@@ -31,11 +32,16 @@ function App() {
           <Route
             path="/messages/*"
             element={
-              <Messages
+              <MessagesContainer
+              />
+            }/>
+          <Route
+            path="/login/*"
+            element={
+              <Login
               />
             }
-          />
-
+            />
           <Route path="/news" element={<News />} />
           <Route path="/music" element={<Music />} />
           <Route path="/settings" element={<Settings />} />

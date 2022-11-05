@@ -1,4 +1,4 @@
-import { follow, getUsers, unfollow } from "../API/Api";
+import { userAPI } from "../API/Api";
 
 const UNFOLLOW = "UNFOLLOW";
 const FOLLOW = "FOLLOW";
@@ -95,7 +95,7 @@ export const buttonDisablerActionCreator = (id,disableStatus) => {
 export const getUsersThunkCreator=(currentPage,pageSize)=>{
 return (dispatch)=>{
   dispatch(fetchingRegulatorActionCreator(true));
-    getUsers(currentPage,pageSize)
+  userAPI.getUsers(currentPage,pageSize)
       .then((data) => {
         dispatch(fetchingRegulatorActionCreator(false));
         dispatch(setUserActionCreator(data.items));
@@ -103,20 +103,23 @@ return (dispatch)=>{
 })}}
 export const followThunkCreator=(id)=>{
 return (dispatch)=>{
-  follow(id)
+  debugger
+  userAPI.follow(id)
     .then((data)=>{
+      debugger
+      dispatch(buttonDisablerActionCreator(id,false))
       if(data.resultCode===0){
         dispatch(followActionCreator(id));
-        dispatch(buttonDisablerActionCreator(id,false))
+        
       }
     })}}
 export const unfollowThunkCreator=(id)=>{
 return (dispatch)=>{
-  unfollow(id)
+  userAPI.unfollow(id)
     .then((data)=>{
+      dispatch(buttonDisablerActionCreator(id,false))
       if(data.resultCode===0){
         dispatch(unfollowActionCreator(id));
-        dispatch(buttonDisablerActionCreator(id,false))
       }
     })}}
 

@@ -4,7 +4,7 @@ import classes from "./Navbar.module.css";
 const Navbar = () => {
   return (
     <nav className={classes.navbar}>
-      <Link className={classes.link} to="/profile/1">
+      <Link className={classes.link} to="/profile/*">
         <div>Profile</div>
       </Link>
       <Link className={classes.link} to="/messages">

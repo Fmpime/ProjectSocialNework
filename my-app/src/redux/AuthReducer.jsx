@@ -1,4 +1,4 @@
-import { authMe } from "../API/Api.js";
+import { headerAPI } from "../API/Api.js";
 const SET_USER_DATA = "SET-USER-DATA";
 const FETCHING_REGULATOR = "FETCHING-REGULATOR";
 let initialState = {
@@ -6,7 +6,9 @@ let initialState = {
     id: null,
     email: null,
     login: null,
+    isAuth:false,
   },
+
 };
 
 const authReducer = (state = initialState, action) => {
@@ -19,7 +21,7 @@ const authReducer = (state = initialState, action) => {
     case SET_USER_DATA:
       return {
         ...state,
-        data:action.data,
+        data:{...action.data,isAuth:true,},
       };
     default:
       return state;
@@ -35,10 +37,11 @@ export const fetchingRegulatorActionCreator = (isFetching) => {
 export const authMeThunkCreator=()=>{
   return (dispatch)=>{
     dispatch(fetchingRegulatorActionCreator(true))
-    authMe().then((data) => {
-      dispatch(setUserDataActionCreator(data))
+    headerAPI.authMe().then((data) => {
+      if (data){
       dispatch(fetchingRegulatorActionCreator(false));
-      })}}
+      dispatch(setUserDataActionCreator(data))
+      }})}}
 
 
 export default authReducer;

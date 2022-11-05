@@ -1,4 +1,4 @@
-import { getUserProfile } from "../API/Api";
+import { userAPI } from "../API/Api";
 
 const ADD_POST = "ADD-POST";
 const UPDATER_HEAD = "UPDATER-HEAD";
@@ -102,7 +102,7 @@ export const fetchingRegulatorActionCreator = (isFetching) => {
 export const getUserProfileThunkAC = (userId) => {
   return (dispatch) => {
     dispatch(fetchingRegulatorActionCreator(true));
-    getUserProfile(userId).then((data) => {
+    userAPI.getUserProfile(userId).then((data) => {
       dispatch(fetchingRegulatorActionCreator(false));
       dispatch(setUserProfileActionCreaor(data));
     });

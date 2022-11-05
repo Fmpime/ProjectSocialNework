@@ -3,19 +3,18 @@ import { Link } from 'react-router-dom';
 import Button from '../../UI/button/Button';
 import classes from '../Header.module.css'
 const AuthForm = (props) => {
-    if(props.resultCode===1){
+    if(!props.isAuth){
     return (
         <div className={classes.loginblock}>
-            
-            <Button nameButton='login'/>
-            <Button nameButton='registration'/>
+            <Link to="/login">login|||</Link>
+            <Link to="/registration">registration</Link>
         </div>
-    );}else if(props.resultCode===0){
+    )}else{
     return (
         <div className={classes.loginblock}>
             <Link to={'/profile/'+props.data.id}><b>{props.data.login}</b></Link>
             <Button nameButton='logout'/>
-        </div>)}
+        </div>
+        )}
 }
-
 export default AuthForm;

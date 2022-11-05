@@ -5,6 +5,7 @@ import {
 } from "../../../redux/ProfileReducer";
 import Profile from "./Profile";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { authNavigateHOC } from "../../../hoc/AuthNavigate";
 
 
 
@@ -26,22 +27,20 @@ class ProfileConainer extends React.Component {
       this.props.getUserProfileThunkAC(userId)}
   render() {
     return (
-      <>
         <Profile {...this.props} />
-      </>
     );
   }
-}
+  }
 
 const mapStateToProps = (state) => {
   return {
-    isFetching: state.profile.isFetching,
     profileState: state.profile.profile,
   };
 };
 
-const URLDataContainerComponent = withRouter(ProfileConainer);
+const redirectContainer= authNavigateHOC(ProfileConainer)
+
 
 export default connect(mapStateToProps, {
   getUserProfileThunkAC,
-})(URLDataContainerComponent);
+})(withRouter(redirectContainer));
