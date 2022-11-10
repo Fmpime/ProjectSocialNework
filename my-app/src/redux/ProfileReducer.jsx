@@ -1,9 +1,11 @@
-import { userAPI } from "../API/Api";
+import { profileAPI, userAPI } from "../API/Api";
+import { fetchingRegulatorActionCreator } from "./FindUserReducer";
 
 const ADD_POST = "ADD-POST";
 const UPDATER_HEAD = "UPDATER-HEAD";
 const UPDATER_CONTENT = "UPDATER-CONTENT";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
+const SET_STATUS = "SET-STATUS";
 const FETCHING_REGULATOR = "FETCHING-REGULATOR";
 let initialState = {
   _postItemData: [
@@ -31,12 +33,13 @@ let initialState = {
   _newPostHead: "",
   _newPostContent: "",
   profile: {
-    aboutMe: "",
+    aboutMe: "ghoul997",
     photos: { small: "", large: "" },
     fullName: "NickName",
     userId: null,
   },
   isFetching: true,
+  status:'mestatus',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -73,6 +76,12 @@ const profileReducer = (state = initialState, action) => {
         profile: action.profile,
       };
     }
+    case SET_STATUS: {
+      return {
+        ...state,
+        status:action.status,
+      };
+    }
     case UPDATER_HEAD: {
       return {
         ...state,
@@ -96,9 +105,10 @@ export const updaterContentActionCreator = (content) => {
 export const setUserProfileActionCreaor = (profile) => {
   return { type: SET_USER_PROFILE, profile };
 };
-export const fetchingRegulatorActionCreator = (isFetching) => {
-  return { type: FETCHING_REGULATOR, isFetching: isFetching };
+export const setStatusActionCreator = (status) => {
+  return { type: SET_STATUS, status };
 };
+
 export const getUserProfileThunkAC = (userId) => {
   return (dispatch) => {
     dispatch(fetchingRegulatorActionCreator(true));
@@ -106,6 +116,21 @@ export const getUserProfileThunkAC = (userId) => {
       dispatch(fetchingRegulatorActionCreator(false));
       dispatch(setUserProfileActionCreaor(data));
     });
+    
   };
+};
+export const getStatusThunkAC = (userId) => {
+  return (dispatch) => {
+    profileAPI.getStatus(userId).then((status) => {
+      dispatch(setStatusActionCreator(status));
+    });
+  };
+};
+export const updateStatusThunkAC = (status) => {
+  debugger
+  return (dispatch) => {
+    debugger
+    profileAPI.updateStatus(status)
+  }
 };
 export default profileReducer;

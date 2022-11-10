@@ -10,30 +10,25 @@ import {
 import React from "react";
 import UsersProfileItems from "./userprofileitem/UsersProfileItems";
 import Feching from "../../../UI/Fetching/Feching";
-
-
-
-
-
-
+import { compose } from "redux";
+import { authNavigateHOC } from "../../../../hoc/AuthNavigate";
 
 class UserProfileItemsClass extends React.Component {
   componentDidMount() {
-    this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize)
-    
-      
-      
+    this.props.getUsersThunkCreator(
+      this.props.currentPage,
+      this.props.pageSize
+    );
   }
-  onFollowStatus(id){
-    this.follow(id)
-
+  onFollowStatus(id) {
+    this.follow(id);
   }
-  onUnFollowStatus(id){
-    this.unfollow(id)
+  onUnFollowStatus(id) {
+    this.unfollow(id);
   }
   onsetCurrenPageFunc = (p) => {
     this.props.setCurrenPage(p);
-    this.props.getUsersThunkCreator(p,this.props.pageSize)
+    this.props.getUsersThunkCreator(p, this.props.pageSize);
   };
   render() {
     return (
@@ -86,12 +81,14 @@ const mapStateToProps = (state) => {
 //   };
 // };
 
-export default connect(mapStateToProps, {
-  getUsersThunkCreator,
-  unfollow:unfollowThunkCreator,
-  follow:followThunkCreator,
-  buttonDisabler: buttonDisablerActionCreator,
-  setCurrenPage: setCurrenPageActionCreator,
-  setTotalCount: setUsersTotalCountActionCreator,
-
-})(UserProfileItemsClass);
+export default compose(
+  authNavigateHOC,
+  connect(mapStateToProps, {
+    getUsersThunkCreator,
+    unfollow: unfollowThunkCreator,
+    follow: followThunkCreator,
+    buttonDisabler: buttonDisablerActionCreator,
+    setCurrenPage: setCurrenPageActionCreator,
+    setTotalCount: setUsersTotalCountActionCreator,
+  })
+)(UserProfileItemsClass);

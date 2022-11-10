@@ -103,10 +103,8 @@ return (dispatch)=>{
 })}}
 export const followThunkCreator=(id)=>{
 return (dispatch)=>{
-  debugger
   userAPI.follow(id)
     .then((data)=>{
-      debugger
       dispatch(buttonDisablerActionCreator(id,false))
       if(data.resultCode===0){
         dispatch(followActionCreator(id));

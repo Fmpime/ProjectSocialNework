@@ -1,3 +1,4 @@
+import { Route } from "react-router-dom";
 import { headerAPI } from "../API/Api.js";
 const SET_USER_DATA = "SET-USER-DATA";
 const FETCHING_REGULATOR = "FETCHING-REGULATOR";
@@ -10,7 +11,6 @@ let initialState = {
   },
 
 };
-
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCHING_REGULATOR:
@@ -38,10 +38,17 @@ export const authMeThunkCreator=()=>{
   return (dispatch)=>{
     dispatch(fetchingRegulatorActionCreator(true))
     headerAPI.authMe().then((data) => {
-      if (data){
+
+      if (data.resultCode===0){
       dispatch(fetchingRegulatorActionCreator(false));
-      dispatch(setUserDataActionCreator(data))
+      dispatch(setUserDataActionCreator(data.data))
       }})}}
+export const loginThunkCreator=(formData)=>{
+  return ()=>{
+    headerAPI.login(formData).then((response) => {
+      if (response.data.resultCode===0){
+         <Route path={"/profile/"+response.data.data.userId}/>
+  }})}}
 
 
 export default authReducer;

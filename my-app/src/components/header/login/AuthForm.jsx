@@ -12,7 +12,7 @@ const AuthForm = (props) => {
     )}else{
     return (
         <div className={classes.loginblock}>
-            <Link to={'/profile/'+props.data.id}><b>{props.data.login}</b></Link>
+            <Link to={'/profile/'+props.id}><b>{props.login}</b></Link>
             <Button nameButton='logout'/>
         </div>
         )}

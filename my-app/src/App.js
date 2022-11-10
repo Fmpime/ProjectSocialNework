@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route} from "react-router-dom";
 import "./App.css";
 import Header from "./components/header/Header";
-import Login from "./components/header/login/login/Login";
+import LoginContainer from "./components/header/login/login/LoginContainer";
 import Navbar from "./components/nav/Navbar";
 import FindUsers from "./components/pages/finduser/FindUsers";
 import MessagesContainer from "./components/pages/messages/MessagesContainer";
@@ -38,7 +38,7 @@ function App() {
           <Route
             path="/login/*"
             element={
-              <Login
+              <LoginContainer
               />
             }
             />

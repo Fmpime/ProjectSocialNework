@@ -8,8 +8,8 @@ const Profile = (props) => {
   return (
     <div className={classes.content}>
       {props.isFetching===true ?<Feching /> : null}
-      <ProfileHeader profileState={props.profileState}/>
-      <ProfileInfo profileState={props.profileState}/>
+      <ProfileHeader {...props}/>
+      <ProfileInfo {...props}/>
       <Posts/>
     </div>
   );

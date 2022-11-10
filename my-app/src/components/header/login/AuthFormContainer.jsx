@@ -9,7 +9,7 @@ class AuthFormContainer extends React.Component {
     this.props.authMeThunkCreator()
   }
   render() {
-    return <AuthForm {...this.props.data} />;
+    return <AuthForm {...this.props.data}  />;
   }
 }
 
@@ -20,5 +20,5 @@ const mstp = (state) => {
 };
 
 export default connect(mstp, {
-  authMeThunkCreator:authMeThunkCreator
+  authMeThunkCreator:authMeThunkCreator,
 })(AuthFormContainer);
