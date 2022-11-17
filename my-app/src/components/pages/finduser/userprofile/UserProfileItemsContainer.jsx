@@ -12,6 +12,7 @@ import UsersProfileItems from "./userprofileitem/UsersProfileItems";
 import Feching from "../../../UI/Fetching/Feching";
 import { compose } from "redux";
 import { authNavigateHOC } from "../../../../hoc/AuthNavigate";
+import { getCurrentPage, getFindUser, getIsFetching, getPageSize, getTotalUserCount } from "../../../../redux/UserSelectors";
 
 class UserProfileItemsClass extends React.Component {
   componentDidMount() {
@@ -49,13 +50,22 @@ class UserProfileItemsClass extends React.Component {
   }
 }
 
+// const mapStateToProps = (state) => {
+//   return {
+//     findUserData: state.findUser._findUserData,
+//     totalUserCount: state.findUser.totalUserCount,
+//     pageSize: state.findUser.pageSize,
+//     currentPage: state.findUser.currentPage,
+//     isFeteching: state.findUser.isFetching,
+//   };
+// };
 const mapStateToProps = (state) => {
   return {
-    findUserData: state.findUser._findUserData,
-    totalUserCount: state.findUser.totalUserCount,
-    pageSize: state.findUser.pageSize,
-    currentPage: state.findUser.currentPage,
-    isFeteching: state.findUser.isFetching,
+    findUserData: getFindUser(state),
+    totalUserCount: getTotalUserCount(state),
+    pageSize: getPageSize(state),
+    currentPage: getCurrentPage(state),
+    isFeteching: getIsFetching(state),
   };
 };
 // const mapDispatchToProps = (dispatch) => {

@@ -1,45 +1,21 @@
 import { profileAPI, userAPI } from "../API/Api";
 import { fetchingRegulatorActionCreator } from "./FindUserReducer";
 
-const ADD_POST = "ADD-POST";
-const UPDATER_HEAD = "UPDATER-HEAD";
-const UPDATER_CONTENT = "UPDATER-CONTENT";
-const SET_USER_PROFILE = "SET-USER-PROFILE";
-const SET_STATUS = "SET-STATUS";
-const FETCHING_REGULATOR = "FETCHING-REGULATOR";
+const ADD_POST = "PROFILE/ADD-POST";
+const SET_USER_PROFILE = "PROFILE/SET-USER-PROFILE";
+const SET_STATUS = "PROFILE/SET-STATUS";
+const FETCHING_REGULATOR = "PROFILE/FETCHING-REGULATOR";
 let initialState = {
   _postItemData: [
-    {
-      _id: "1",
-      _content:
-        "daite mne belie crilya va utopayu v imute hcherex trrni  i provoffs v nrbo  toks nr muchicsd",
-      _heading: "filmi dla detey",
-      _likes: "12",
-    },
-    {
-      _id: "2",
-      _content:
-        "daite chto za jizni doktor tema  i provoffs v nrbo  toks nr muchicsd",
-      _heading: "faerery",
-      _likes: "13",
-    },
-    {
-      _id: "3",
-      _content: "ya lubly nuchego ne delatn",
-      _heading: "vwfwr dla wrrr",
-      _likes: "123",
-    },
   ],
-  _newPostHead: "",
-  _newPostContent: "",
   profile: {
-    aboutMe: "ghoul997",
+    aboutMe: "",
     photos: { small: "", large: "" },
-    fullName: "NickName",
+    fullName: "",
     userId: null,
   },
   isFetching: true,
-  status:'mestatus',
+  status:'status',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -52,22 +28,14 @@ const profileReducer = (state = initialState, action) => {
     case ADD_POST: {
       let newPost = {
         _id: 4,
-        _content: state._newPostContent,
-        _heading: state._newPostHead,
+        postBody: action.post.postBody,
+        postHead: action.post.postHead,
         _date: Date(),
         _likes: "0",
       };
       return {
         ...state,
         _postItemData: [...state._postItemData, { ...newPost }],
-        _newPostContent: "",
-        _newPostHead: "",
-      };
-    }
-    case UPDATER_CONTENT: {
-      return {
-        ...state,
-        _newPostContent: action.newContent,
       };
     }
     case SET_USER_PROFILE: {
@@ -82,25 +50,12 @@ const profileReducer = (state = initialState, action) => {
         status:action.status,
       };
     }
-    case UPDATER_HEAD: {
-      return {
-        ...state,
-        _newPostHead: action.newHead,
-      };
-    }
     default:
       return state;
   }
 };
-export const addPostActionCreator = () => {
-  return { type: ADD_POST };
-};
-
-export const updaterHeadActionCreator = (heading) => {
-  return { type: UPDATER_HEAD, newHead: heading };
-};
-export const updaterContentActionCreator = (content) => {
-  return { type: UPDATER_CONTENT, newContent: content };
+export const addPostActionCreator = (post) => {
+  return { type: ADD_POST , post};
 };
 export const setUserProfileActionCreaor = (profile) => {
   return { type: SET_USER_PROFILE, profile };
@@ -121,16 +76,24 @@ export const getUserProfileThunkAC = (userId) => {
 };
 export const getStatusThunkAC = (userId) => {
   return (dispatch) => {
-    profileAPI.getStatus(userId).then((status) => {
+     profileAPI.getStatus(userId).then((status) => {
       dispatch(setStatusActionCreator(status));
     });
   };
 };
 export const updateStatusThunkAC = (status) => {
-  debugger
   return (dispatch) => {
-    debugger
     profileAPI.updateStatus(status)
   }
 };
+export const setProfilePhotoThunkCreator = (photo,aboutMe,lookingForAJob,lookingForAJobDescription,fullName,userId) => {
+  return (dispatch) => {
+    profileAPI.updatePhoto(photo).then((response)=>{console.log(response)})
+    profileAPI.updateProfileInfo(aboutMe,lookingForAJob,lookingForAJobDescription,fullName).then(()=>{
+      userAPI.getUserProfile(userId).then((data) => {
+        dispatch(setUserProfileActionCreaor(data))
+    })
+    
+  })
+}}
 export default profileReducer;

@@ -1,14 +1,9 @@
 const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATER_MESSAGE = "UPDATER-MESSAGE";
 
 let initialState = {
   _myId: 2,
   _messageData: [
-    { _userId: 2, _id: "1", _message: "rodine ya ne nuzhen" },
-    { _userId: 1, _id: "2", _message: "sila v pravde" },
-    { _userId: 2, _id: "3", _message: "ya livay parni" },
-    { _userId: 1, _id: "4", _message: "lublu cocks" },
-    { _userId: 2, _id: "5", _message: "lesha i zhopa toscja" },
+
   ],
   _newMessage: "",
   _dialogsData: [
@@ -26,27 +21,19 @@ const messageReducer = (state = initialState, action) => {
       let newMessage = {
         _userId: 2,
         _id: "1",
-        _message: state._newMessage,
+        _message: action.message,
       };
       return {
         ...state,
         _messageData: [...state._messageData, { ...newMessage }],
-        _newMessage: "",
+        _message: "",
       };
     }
-    case UPDATER_MESSAGE:
-      return {
-        ...state,
-        _newMessage: action.newMessage,
-      };
     default:
       return state;
   }
 };
-export const addMessageActionCreator = () => {
-  return { type: ADD_MESSAGE };
-};
-export const ubtaterMessageActionCreator = (message) => {
-  return { type: UPDATER_MESSAGE, newMessage: message };
+export const addMessageActionCreator = (message) => {
+  return { type: ADD_MESSAGE, message };
 };
 export default messageReducer;

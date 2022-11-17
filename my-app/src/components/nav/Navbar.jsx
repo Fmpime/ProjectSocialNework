@@ -1,10 +1,14 @@
+import { connect } from "react-redux";
 import React from "react";
 import { Link } from "react-router-dom";
+
 import classes from "./Navbar.module.css";
-const Navbar = () => {
+class Navbar extends React.Component{
+
+  render(){
   return (
     <nav className={classes.navbar}>
-      <Link className={classes.link} to="/profile/*">
+      <Link className={classes.link} to={"/profile/"+ this.props.currentUserId}>
         <div>Profile</div>
       </Link>
       <Link className={classes.link} to="/messages">
@@ -23,6 +27,9 @@ const Navbar = () => {
         <div>Find users</div>
       </Link>
     </nav>
-  );
+  );}
 };
-export default Navbar;
+const mstp = (state) =>({
+  currentUserId: state.auth.data.id
+})
+export default connect(mstp,{})(Navbar);

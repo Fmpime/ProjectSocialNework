@@ -1,25 +1,33 @@
 .new__post{
     display: flex;
+    flex-direction: column;
     margin:2em 0 2em 4.5em;
 
 }
-form{
+.form{
     display: flex;
     flex-direction: column;
     gap:1em;
 }
 .text__head{
+    all: unset;
     border: 2px solid turquoise;
     border-radius: 0.4em;
-    height:2.5em;
-    width:30em;
+    width: 30em;
     
 }
 .text__area{
+    all:unset;
     border: 2px solid turquoise;
     border-radius: 0.4em;
+    height: 10em;
+    width:30em;
+    word-wrap: break-word;
 
 }
 .new__post p{
     font-weight: bold;
+}
+.button{
+    width:35em;
 }

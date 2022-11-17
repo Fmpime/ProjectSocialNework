@@ -1,5 +1,7 @@
+import { connect } from "react-redux";
 import React from "react";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { compose } from "redux";
 import "./App.css";
 import Header from "./components/header/Header";
 import LoginContainer from "./components/header/login/login/LoginContainer";
@@ -10,45 +12,39 @@ import Music from "./components/pages/music/Music";
 import News from "./components/pages/news/News";
 import ProfileConainer from "./components/pages/profile/ProfileContainer";
 import Settings from "./components/pages/settings/Music";
+import { withRouter } from "./hoc/WithRouerHOC";
+import {inicializedThunkCreator} from './redux/AppReducer'
+import Feching from "./components/UI/Fetching/Feching";
+class App extends React.Component {
+  componentDidMount() {
+    this.props.inicializedThunkCreator()
+  }
+  render() {
+    if(this.props.inicialized){
+    return (
+      <div className="App">
+        <Header />
+        <Navbar />
+        <div className="app__pages__content">
+          <Routes>
+            <Route path="/profile/:userId" element={<ProfileConainer />} />
+            <Route path="/findusers/*" element={<FindUsers />} />
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Navbar/>
-      <div className="app__pages__content">
-        <Routes>
-          <Route
-            path="/profile/:userId"
-            element={
-              <ProfileConainer />}
-          />
-          <Route
-            path="/findusers/*"
-            element={
-              <FindUsers/>}
-          />
-
-          <Route
-            path="/messages/*"
-            element={
-              <MessagesContainer
-              />
-            }/>
-          <Route
-            path="/login/*"
-            element={
-              <LoginContainer
-              />
-            }
-            />
-          <Route path="/news" element={<News />} />
-          <Route path="/music" element={<Music />} />
-          <Route path="/settings" element={<Settings />} />
-        </Routes>
+            <Route path="/messages/*" element={<MessagesContainer />} />
+            <Route path="/login/*" element={<LoginContainer />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/music" element={<Music />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </div>
       </div>
-    </div>
-  );
+    );}else{
+      return<Feching/>
+    }
+  }
 }
+const mstp = (state)=>({
+  inicialized: state.app.inicialized,
+})
 
-export default App;
+export default compose(connect(mstp,{inicializedThunkCreator}))(withRouter(App));

@@ -4,6 +4,7 @@
     margin: 0 auto 0 ;
     border: 2px solid turquoise;
     height:3em;
+    width: 100%;
     cursor: pointer;
     align-items: center;
     justify-content: center;

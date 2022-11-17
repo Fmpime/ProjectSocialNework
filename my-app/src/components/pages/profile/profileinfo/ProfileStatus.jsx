@@ -4,7 +4,7 @@ class ProfileStatus extends React.Component {
   onStatusChange(value){
     this.setState({...this.state,status:value})
   }
-  onInputStatusChane=(value)=>{this.onStatusChange(value)}
+  onInputStatusChange=(value)=>{this.onStatusChange(value)}
   onInputStatusUpdate=(value)=>{this.props.updateStatusThunkAC(value);this.setState({ editMode: false })}
   state = {
     editMode: false,
@@ -20,7 +20,7 @@ class ProfileStatus extends React.Component {
         {this.state.editMode ? (
           <div>
             <input
-            onChange={(el)=>this.onInputStatusChane(el.currentTarget.value)}
+            onChange={(el)=>this.onInputStatusChange(el.currentTarget.value)}
               type="text"
               value={this.state.status}
               onBlur={(el) => {
@@ -31,7 +31,7 @@ class ProfileStatus extends React.Component {
           </div>
         ) : (
           <div>
-            <span onDoubleClick={() => {debugger;if(this.props.logginedUserid===this.props.id)this.setState({ editMode: true })}}>
+            <span onDoubleClick={() => {if(this.props.logginedUserid===this.props.id)this.setState({ editMode: true })}}>
               {this.props.status}
             </span>
           </div>

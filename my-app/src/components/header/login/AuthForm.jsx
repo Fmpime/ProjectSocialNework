@@ -13,7 +13,7 @@ const AuthForm = (props) => {
     return (
         <div className={classes.loginblock}>
             <Link to={'/profile/'+props.id}><b>{props.login}</b></Link>
-            <Button nameButton='logout'/>
+            <Button onclick={()=>{props.logoutThunkCreator()}} nameButton='logout'/>
         </div>
         )}
 }

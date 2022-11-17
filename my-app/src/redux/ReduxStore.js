@@ -1,4 +1,5 @@
 import { configureStore} from '@reduxjs/toolkit';
+import appReducer from './AppReducer';
 import authReducer from './AuthReducer';
 import findUserReducer from './FindUserReducer';
 import messageReducer from "./MessageReducer";
@@ -11,6 +12,7 @@ let store = configureStore({
     messages:messageReducer,
     findUser:findUserReducer,
     auth:authReducer,
+    app: appReducer,
     }
 });
 window.store=store

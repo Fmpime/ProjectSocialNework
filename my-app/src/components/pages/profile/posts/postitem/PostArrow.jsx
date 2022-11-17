@@ -10,8 +10,8 @@ const PostArrow = (props) => {
           return (
             <PostItem
               likes={state._likes}
-              heading={state._heading}
-              content={state._content}
+              heading={state.postHead}
+              content={state.postBody}
               date={state._date}
             />
           );

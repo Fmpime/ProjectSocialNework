@@ -5,7 +5,8 @@ const UserMessagesItem = (props) => {
     return (
         
         <div className={classes.messageItem}>
-        {props.userId===2 ?(<div className={classes.mymessage}>
+        {props.userId===props.myId ?(<div className={classes.mymessage}>
+            You:
         <p>{props.message}</p><img
         src="https://bain.design/wp-content/uploads/2014/08/People-Avatar-Set-Rectangular-12.jpg"
         alt="zxc"

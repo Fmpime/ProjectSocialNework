@@ -1,53 +1,43 @@
 import React from "react";
-import Button from "../../../../UI/button/Button";
+import { Form, Formik, Field } from "formik";
 
 import classes from "./NewPost.module.css";
 
-
-
 const NewPost = (props) => {
-    const newPostMessageElement = React.createRef()
-    const newPostHeadingElement = React.createRef()
-    const addPost = () =>{
-      
-      props.addPost()
-      
-    }
-    const updaterHeadF=()=>{
-      let heading = newPostHeadingElement.current.value
-      props.updaterHeadF(heading)
-    
-    }
-    const updaterContentF=()=>{
-      let content = newPostMessageElement.current.value
-      props.updaterContentF(content)
-    }
-
-    
   return (
     <div className={classes.new__post}>
-      <form>
-        <p>Create new post!</p>
-        <input
-          type="text"
+      <p>Create new post!</p>
+      <Formik
+      initialValues={{
+        postHead: "",
+        postBody: "",
+      }}
+      onSubmit={(post,{resetForm}) => {
+        props.addPost(post)
+        resetForm({
+          values: {postHead: "",postBody: "",}
+        });
+      }}
+      >
+      {(formik)=>{
+      return(
+      <Form className={classes.form}>
+        <Field
+          name='postHead'
           placeholder="heading"
-          ref={newPostHeadingElement}
           className={classes.text__head}
-          value={props.newPostHead}
-          onChange={updaterHeadF}
         />
-        <textarea
+        <Field
           placeholder="Write something here..."
-          cols="80"
-          rows="10"
-          name="a"
-          ref={newPostMessageElement}
+          name="postBody"
+          as="textarea"
           className={classes.text__area}
-          value={props.newPostContent}
-          onChange={updaterContentF}
         />
-        <Button nameButton='Send post' onclick={addPost} />
-      </form>
+        <button type='submit' style={{border:'black solid 2px',width:"20em"}}>Send post</button>
+      </Form>
+      )}
+      }
+      </Formik>
     </div>
   );
 };
