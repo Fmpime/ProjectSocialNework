@@ -2,7 +2,11 @@ import axios from "axios";
 const instanse = axios.create({
   baseURL: "https://social-network.samuraijs.com/api/1.0/",
   withCredentials: true,
-});
+  headers:{
+    "API-KEY":"f520cadf-44b5-49c9-b62f-7eb5035ebda6"
+  }
+}
+);
 
 export const profileAPI = {
   async getUserProfile(userId) {
