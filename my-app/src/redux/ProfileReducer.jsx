@@ -6,8 +6,7 @@ const SET_USER_PROFILE = "PROFILE/SET-USER-PROFILE";
 const SET_STATUS = "PROFILE/SET-STATUS";
 const FETCHING_REGULATOR = "PROFILE/FETCHING-REGULATOR";
 let initialState = {
-  _postItemData: [
-  ],
+  _postItemData: [],
   profile: {
     aboutMe: "",
     photos: { small: "", large: "" },
@@ -15,7 +14,7 @@ let initialState = {
     userId: null,
   },
   isFetching: true,
-  status:'status',
+  status: "status",
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -47,7 +46,7 @@ const profileReducer = (state = initialState, action) => {
     case SET_STATUS: {
       return {
         ...state,
-        status:action.status,
+        status: action.status,
       };
     }
     default:
@@ -55,7 +54,7 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 export const addPostActionCreator = (post) => {
-  return { type: ADD_POST , post};
+  return { type: ADD_POST, post };
 };
 export const setUserProfileActionCreaor = (profile) => {
   return { type: SET_USER_PROFILE, profile };
@@ -71,29 +70,35 @@ export const getUserProfileThunkAC = (userId) => {
       dispatch(fetchingRegulatorActionCreator(false));
       dispatch(setUserProfileActionCreaor(data));
     });
-    
   };
 };
 export const getStatusThunkAC = (userId) => {
   return (dispatch) => {
-     profileAPI.getStatus(userId).then((status) => {
+    profileAPI.getStatus(userId).then((status) => {
       dispatch(setStatusActionCreator(status));
     });
   };
 };
 export const updateStatusThunkAC = (status) => {
   return (dispatch) => {
-    profileAPI.updateStatus(status)
-  }
+    profileAPI.updateStatus(status);
+  };
 };
-export const setProfilePhotoThunkCreator = (photo,aboutMe,lookingForAJob,lookingForAJobDescription,fullName,userId) => {
+export const setProfileInfoThunkCreator = (
+  photo,
+  aboutMe,
+  lookingForAJob,
+  lookingForAJobDescription,
+  fullName,
+  userId
+) => {
   return (dispatch) => {
-    profileAPI.updatePhoto(photo).then((response)=>{console.log(response)})
-    profileAPI.updateProfileInfo(aboutMe,lookingForAJob,lookingForAJobDescription,fullName).then(()=>{
-      userAPI.getUserProfile(userId).then((data) => {
-        dispatch(setUserProfileActionCreaor(data))
-    })
-    
-  })
-}}
+    profileAPI.updatePhoto(photo).then(() => {
+    profileAPI.updateProfileInfo(aboutMe,lookingForAJob,lookingForAJobDescription,fullName).then(() => {
+        userAPI.getUserProfile(userId).then((data) => {
+          dispatch(setUserProfileActionCreaor(data));
+        });
+      });
+    });};
+};
 export default profileReducer;

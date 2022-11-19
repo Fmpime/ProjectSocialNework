@@ -1,5 +1,6 @@
 
 import { connect } from "react-redux";
+import { updataDialogThunkCreator } from "../../../../redux/MessageReducer";
 import Dialog from "./Dialog";
 
 
@@ -10,6 +11,6 @@ const mapStateToProps = (state) =>{
   }
 }
 
-const DialogContainer = connect(mapStateToProps,{})(Dialog)
+const DialogContainer = connect(mapStateToProps,{updataDialogThunkCreator})(Dialog)
 
 export default DialogContainer;

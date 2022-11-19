@@ -1,32 +1,38 @@
-import { Field, Form, Formik } from "formik";
+import { Form, Formik, Field } from "formik";
 import React from "react";
+
 import classes from "../Messages.module.css";
 import UserMessagesItem from "./messagespages/mesegeitem/UserMessagesItem";
 const Message = (props) => {
-  const addMessage = (message) =>{
-    props.addMessage(message)
-}
   return (
     <div>
     <div className={classes.messages__block}>
-      {props.messagesData.map((props) => {
+      {props.messagesData.map((el) => {
         return (
           <UserMessagesItem
-            message={props._message}
-            userId={props._userId}
-            myId={props.myId}
+          addedAt={el.addedAt}
+          body={el.body}
+          id={el.id}
+          recipientId={el.recipientId}
+          senderId={el.senderId}
+          senderName={el.senderName}
+          translatedBody={el.translatedBody}
+          viewed={el.viewed}
+          myId={props.myId}
+          authUserPhoto={props.authUserPhoto.small}
           />
+
         );
       })}
       </div>
       <div>
       <Formik
       initialValues={{
-        message: "",
+        message: null,
       }}
       onSubmit={(value,{resetForm})=>{
         if(value.message&& value.message.replace(/\s/g,"") !== ""){
-        addMessage(value.message)
+        props.postMessageInListThunkCreator(props.ChatId,value.message)
         resetForm({
           values: {message:"",}
         })}
@@ -42,11 +48,12 @@ const Message = (props) => {
               height: "4em",
               border: "2px solid teal",
               margin: "1em auto",
-              wordWrap: "break-word"
+              wordWrap:"break-word",
+
             }}
             name="message"
             as="textarea"
-          />
+          ></Field>
           <button type="submit" nameButton="Send message" >Send Message</button>
         </Form>
       )}

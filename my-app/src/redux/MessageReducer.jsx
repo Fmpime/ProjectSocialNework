@@ -1,39 +1,92 @@
-const ADD_MESSAGE = "ADD-MESSAGE";
+import { dialogAPI, userAPI } from "../API/Api";
 
+const UPDATE_DIALOG_DATA = "dialog/UPDATE-DIALOG-DATA";
+const SET_DIALOG_LIST = "dialog/SET-DIALOG-LIST";
 let initialState = {
-  _myId: 2,
-  _messageData: [
-
-  ],
+  _myId: null,
+  _messageData: [],
   _newMessage: "",
-  _dialogsData: [
-    { _id: "1", _name: "pasha Durov" },
-    { _id: "2", _name: "Sacha Beliy" },
-    { _id: "3", _name: "Kiril ustyan" },
-    { _id: "4", _name: "Masha Medova" },
-    { _id: "5", _name: "Lyosha Makarov" },
-  ],
+  _dialogsData: [],
 };
 
 const messageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_MESSAGE: {
-      let newMessage = {
-        _userId: 2,
-        _id: "1",
-        _message: action.message,
-      };
+    case UPDATE_DIALOG_DATA: {
+      if (action.data.length !== state._dialogsData.length) {
+        return {
+          ...state,
+          _dialogsData: [...action.data],
+        };
+      } else return { ...state };
+    }
+    case SET_DIALOG_LIST: {
+      
+      let newMessages = []
+      action.data.items.map((el,index)=>{
+        return newMessages[index]={
+        addedAt:el.addedAt,
+        body:el.body,
+        id:el.id,
+        recipientId:el.recipientId,
+        senderId:el.senderId,
+        senderName:el.senderName,
+        translatedBody:el.translatedBody,
+        viewed:el.viewed,
+      }
+      })
       return {
         ...state,
-        _messageData: [...state._messageData, { ...newMessage }],
-        _message: "",
+        _messageData: [...newMessages],
       };
     }
     default:
       return state;
   }
 };
-export const addMessageActionCreator = (message) => {
-  return { type: ADD_MESSAGE, message };
+export const setDialogListActionCreator = (data) => {
+  return { type: SET_DIALOG_LIST, data };
+};
+export const updateDialogData = (data) => {
+  return { type: UPDATE_DIALOG_DATA, data };
+};
+export const updataDialogThunkCreator = () => {
+  return (dispatch) => {
+    dialogAPI.getDialogs().then((data) => {
+      if (data.length) {
+        dispatch(updateDialogData(data));
+      }
+    });
+  };
+};
+export const startDialogThunkCreator = (id) => {
+  return (dispatch) => {
+    userAPI.followed(id).then((response) => {
+      if (response) {
+        dialogAPI.startDialogWithFriend(id).then((response) => {
+          dialogAPI.getDialogs().then((data) => {
+            if (data.length !== 0) dispatch(updateDialogData(data));
+          });
+        });
+      } else {
+        return "you are not friend";
+      }
+    });
+  };
+};
+export const getDialogListThunkCreator = (id) => {
+  return (dispatch) => {
+    dialogAPI.getDialogList(id).then((response) => {
+      dispatch(setDialogListActionCreator(response.data));
+    });
+  };
+};
+export const postMessageInListThunkCreator = (id,message) => {
+  return (dispatch) => {
+    dialogAPI.postMessageInList(id,message).then((res)=>{
+      dialogAPI.getDialogList(id).then((response) => {
+        dispatch(setDialogListActionCreator(response.data));
+      });
+    })
+  }
 };
 export default messageReducer;

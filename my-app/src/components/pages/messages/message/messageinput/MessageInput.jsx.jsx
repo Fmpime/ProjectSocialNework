@@ -7,6 +7,7 @@ const MessageInput = (props) => {
       initialValues={{
         message: "",
       }}
+      onSubmit={}
     >
       {(formik) => (
         <Form>

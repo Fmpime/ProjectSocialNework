@@ -42,22 +42,21 @@ export const fetchingRegulatorActionCreator = (isFetching) => {
   return { type: FETCHING_REGULATOR, isFetching: isFetching };
 };
 
-export const authMeThunkCreator = () => (dispatch) => {
+export const authMeThunkCreator = () => async (dispatch) => {
    
       dispatch(fetchingRegulatorActionCreator(true));
-      return headerAPI.authMe().then((data) => {
-      dispatch(fetchingRegulatorActionCreator(false));
-      if (data.resultCode === 0) {
-        dispatch(setUserDataActionCreator(data.data, true));
-      } else {
-        dispatch(
-          setUserDataActionCreator(
-            { id: null, email: null, login: null },
-            false
-          )
-        );
-      }
-    });
+      const data = await headerAPI.authMe();
+  dispatch(fetchingRegulatorActionCreator(false));
+  if (data.resultCode === 0) {
+    dispatch(setUserDataActionCreator(data.data, true));
+  } else {
+    dispatch(
+      setUserDataActionCreator(
+        { id: null, email: null, login: null },
+        false
+      )
+    );
+  }
   };
 export const loginThunkCreator = (formData,setUserWasNotFound,setCaptcha) => {
   return (dispatch) => {

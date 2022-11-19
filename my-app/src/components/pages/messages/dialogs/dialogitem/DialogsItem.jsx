@@ -7,7 +7,7 @@ const DialogsItem = (props) => {
         
     
     return (
-           <Link className={classes.dialogs__items} to={`/messages/id${props.id}`}><img src="https://bain.design/wp-content/uploads/2014/08/People-Avatar-Set-Rectangular-12.jpg" alt="avatar" /><div>{props.name}</div></Link>       
+           <Link className={classes.dialogs__items} to={`/messages/${props.id}`}><img src="https://bain.design/wp-content/uploads/2014/08/People-Avatar-Set-Rectangular-12.jpg" alt="avatar" /><div>{props.name}</div></Link>       
     );
 }
 

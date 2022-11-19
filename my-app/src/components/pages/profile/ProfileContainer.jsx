@@ -1,11 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getUserProfileThunkAC,updateStatusThunkAC,getStatusThunkAC, setProfilePhotoThunkCreator } from "../../../redux/ProfileReducer";
+import {
+  getUserProfileThunkAC,
+  updateStatusThunkAC,
+  getStatusThunkAC,
+  setProfileInfoThunkCreator,
+} from "../../../redux/ProfileReducer";
 import Profile from "./Profile";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { authNavigateHOC } from "../../../hoc/AuthNavigate";
 import { compose } from "redux";
-import { getLoginedUserId, getProfile, getStatus } from "../../../redux/ProfileSeletor";
+import {
+  getLoginedUserId,
+  getProfile,
+  getStatus,
+} from "../../../redux/ProfileSeletor";
 
 //custom with router(old code)
 function withRouter(Component) {
@@ -21,12 +30,9 @@ function withRouter(Component) {
 
 class ProfileConainer extends React.Component {
   componentDidMount() {
-    
     let userId = this.props.router.params.userId;
     this.props.getUserProfileThunkAC(userId);
     this.props.getStatusThunkAC(userId);
-
-    
   }
   render() {
     return <Profile {...this.props} />;
@@ -34,7 +40,7 @@ class ProfileConainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("mstp")
+  console.log("mstp");
   return {
     profileState: getProfile(state),
     status: getStatus(state),
@@ -43,6 +49,11 @@ const mapStateToProps = (state) => {
 };
 
 export default compose(
-  connect(mapStateToProps, {getUserProfileThunkAC,getStatusThunkAC, updateStatusThunkAC,setProfilePhotoThunkCreator }),
-  authNavigateHOC,
+  connect(mapStateToProps, {
+    getUserProfileThunkAC,
+    getStatusThunkAC,
+    updateStatusThunkAC,
+    setProfileInfoThunkCreator,
+  }),
+  authNavigateHOC
 )(withRouter(ProfileConainer));

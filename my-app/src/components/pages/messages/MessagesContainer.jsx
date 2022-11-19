@@ -6,18 +6,26 @@ import classes from "./Messages.module.css";
 
 import { authNavigateHOC } from "../../../hoc/AuthNavigate";
 import { compose } from "redux";
+import { Route, Routes} from "react-router-dom";
+
 
 
 
 class Messages extends React.Component{
   componentDidMount(){
+   
   }
   render(){
   return (
     <div className={classes.messages}>
-      <DialogContainer />
+      <DialogContainer/>
       <hr />
-      <MessageContainer/>
+      <Routes>
+      <Route path="/:userId"
+      element={
+      <MessageContainer/>}
+      />
+      </Routes>
     </div>
   )
   }

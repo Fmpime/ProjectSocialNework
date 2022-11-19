@@ -17,8 +17,10 @@ export const profileAPI = {
     return instanse.put("profile/status", { status: status });
   },
   updatePhoto(photo){
-    return instanse.put("profile/photo" , photo,{headers:{
-    'Content-Type': 'multipart/form-data'
+    return instanse.put("profile/photo" , {photo} ,{headers:{
+      'accept': 'application/json',
+      'Accept-Language': 'en-US,en;q=0.8',
+      'Content-Type': `multipart/form-data`,
     }});
 },
   updateProfileInfo(aboutMe,lookingForAJob,lookingForAJobDescription,fullName){
@@ -47,6 +49,10 @@ export const userAPI = {
     const response = await instanse.delete(`follow/` + id);
     return response.data;
   },
+  async followed(id){
+    const response = await instanse.get("follow/"+id)
+    return response;
+  }
 };
 export const headerAPI = {
   async authMe() {
@@ -80,3 +86,22 @@ export const headerAPI = {
     }
   },
 };
+export const dialogAPI = {
+  async getDialogs(){
+    const response = await instanse.get("dialogs")
+      return response.data;
+  },
+  async startDialogWithFriend(id){
+    const response = await instanse.put("dialogs/"+id)
+    return response;
+  },
+  async getDialogList(id){
+    const response = await instanse.get("dialogs/"+id+"/messages")
+    return response
+  },
+  async postMessageInList(id,message){
+    const response = await instanse.post("dialogs/"+id+"/messages",{body:message})
+    debugger
+    return response
+  }
+}

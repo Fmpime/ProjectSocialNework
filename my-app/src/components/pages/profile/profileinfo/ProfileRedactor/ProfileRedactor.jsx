@@ -11,15 +11,15 @@ const ProfileRedactor = (props) => {
       <h2>Profile redactor</h2>
       <Formik
         initialValues={{
-          photoLarge: '',
-          photoSmall: '',
+          photoLarge:  null,
+          photoSmall: null,
           aboutMe: props.aboutMe,
           lookingForAJob: props.lookingForAJob,
           lookingForAJobDescription: props.lookingForAJobDescription,
           fullName: props.fullName,
         }}
         onSubmit={(info) => {
-          props.setProfilePhotoThunkCreator(photo,info.aboutMe,info.lookingForAJob,info.lookingForAJobDescription,info.fullName,props.userId)
+          props.setProfileInfoThunkCreator(photo,info.aboutMe,info.lookingForAJob,info.lookingForAJobDescription,info.fullName,props.userId)
           props.setChangeProfileMode(false)
         }}
       >

@@ -1,4 +1,3 @@
-
 import { authMeThunkCreator } from "./AuthReducer.jsx";
 const INICIALIZED = "INICIALIZED";
 let initialState = {
@@ -22,10 +21,10 @@ export const setInicializedActionCreator = () => {
 
 export const inicializedThunkCreator = () => {
   return (dispatch) => {
-    let ispatchiez=dispatch(authMeThunkCreator())
-    ispatchiez.then((response)=>{
+    let ispatchiez = dispatch(authMeThunkCreator());
+    ispatchiez.then((response) => {
       dispatch(setInicializedActionCreator());
-    })
+    });
   };
 };
 export default appReducer;
