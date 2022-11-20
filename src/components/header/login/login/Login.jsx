@@ -66,9 +66,9 @@ const Login = (props) => {
               type="password"
               validate={validatePass}
             />
-            <div>
+            <div style={{display:"flex",alignItems:"center"}}>
               <label className={classes.label}>remember me</label>
-              <Field name="rememberMe" type="checkbox" />
+              <Field name="rememberMe" type="checkbox"  style={{height:"2em",width:"2em",border:"2px solid turquoise "}}/>
             </div>
             <button className={classes.button} type="submit">
               Login
