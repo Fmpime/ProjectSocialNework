@@ -17,7 +17,7 @@
   outline: auto 1.2em #fff;
 }
 
-.dialogs__items:focus {
+.dialogs__items__selected {
   background: rgb(155, 14, 119);
   outline: 2px auto;
 }
