@@ -8,7 +8,7 @@ const UserMessagesItem = (props) => {
         <div className={classes.mymessage}>
             <div>
           <h3 className={classes.myNickName}>{props.senderName}</h3>
-          <p className={classes.myMessageBody}>{props.body}</p>
+          <p className={classes.MessageBody}>{props.body}</p>
           </div>
           <img  style={{height:"4em",width:"4em"}}
             src={props.authUserPhoto}
@@ -23,7 +23,7 @@ const UserMessagesItem = (props) => {
           />
           <div>
           <h3 className={classes.friendNickName}>{props.senderName}</h3>
-          <p className={classes.friendMessageBody}>{props.body}</p>
+          <p className={classes.MessageBody}>{props.body}</p>
           </div>
         </div>
       )}

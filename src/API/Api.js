@@ -17,8 +17,9 @@ export const profileAPI = {
     const response = await instanse.get("profile/status/" + userId);
     return response.data;
   },
-  updateStatus(status) {
-    return instanse.put("profile/status", { status: status });
+   async updateStatus(status) {
+    const response = await instanse.put("profile/status", { status: status });
+     return response;
   },
   updatePhoto(photo){
     return instanse.put("profile/photo" , {photo} ,{headers:{
@@ -105,7 +106,6 @@ export const dialogAPI = {
   },
   async postMessageInList(id,message){
     const response = await instanse.post("dialogs/"+id+"/messages",{body:message})
-    debugger
     return response
   }
 }

@@ -7,6 +7,14 @@
     
     
 }
+.myNickName{
+    text-align:right;
+    
+}
+.friendNickName{
+    text-align:right;
+
+}
 
 .friendmessage{
     display: flex;
@@ -14,4 +22,10 @@
     margin-top:1em;
     word-wrap:break-word;
     justify-content:left;
+}
+.MessageBody{
+    max-width: 20em;
+    word-wrap: break-word;
+    word-break: break-all;
+
 }

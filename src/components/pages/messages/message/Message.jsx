@@ -28,11 +28,11 @@ const Message = (props) => {
       <div>
       <Formik
       initialValues={{
-        message: null,
+        message: "",
       }}
       onSubmit={(value,{resetForm})=>{
         if(value.message&& value.message.replace(/\s/g,"") !== ""){
-        props.postMessageInListThunkCreator(props.ChatId,value.message)
+        props.postMessageInListThunkCreator(props.ChatId,value.message.replace(/\n/g, " " ))
         resetForm({
           values: {message:"",}
         })}
@@ -53,7 +53,7 @@ const Message = (props) => {
             }}
             name="message"
             as="textarea"
-          ></Field>
+          ><p></p></Field>
           <button type="submit" nameButton="Send message" >Send Message</button>
         </Form>
       )}

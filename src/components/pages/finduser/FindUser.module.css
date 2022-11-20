@@ -35,7 +35,7 @@
     word-wrap:break-word;
 }
 .User_profile_box{
-
+    max-width:40em;
 }
 .user_profile_page{
     display: grid;

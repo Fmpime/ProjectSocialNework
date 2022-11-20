@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./../../FindUser.module.css";
-import Button from "../../../../UI/button/Button";
 import UserProfileItem from "./UserProfileItem";
 const UsersProfileItems = (props) => {
   let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
@@ -38,7 +37,7 @@ const UsersProfileItems = (props) => {
           );
         })}
       </div>
-      <Button  nameButton="jxdn"></Button>
+      <button  nameButton="jxdn"></button>
     </div>
   );
 };

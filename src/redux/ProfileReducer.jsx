@@ -75,13 +75,15 @@ export const getUserProfileThunkAC = (userId) => {
 export const getStatusThunkAC = (userId) => {
   return (dispatch) => {
     profileAPI.getStatus(userId).then((status) => {
-      dispatch(setStatusActionCreator(status));
+      dispatch(updateStatusThunkAC(status));
     });
   };
 };
 export const updateStatusThunkAC = (status) => {
   return (dispatch) => {
-    profileAPI.updateStatus(status);
+    return profileAPI.updateStatus(status).then(response=>{
+      dispatch(setStatusActionCreator(status))
+    });
   };
 };
 export const setProfileInfoThunkCreator = (
