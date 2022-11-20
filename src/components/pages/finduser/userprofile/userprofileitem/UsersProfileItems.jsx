@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./../../FindUser.module.css";
+
 import UserProfileItem from "./UserProfileItem";
 const UsersProfileItems = (props) => {
   let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);

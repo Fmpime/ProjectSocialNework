@@ -4,10 +4,12 @@ import React from "react";
 import classes from "../Messages.module.css";
 import UserMessagesItem from "./messagespages/mesegeitem/UserMessagesItem";
 const Message = (props) => {
+  let reverseMessData = JSON.parse(JSON.stringify(props.messagesData));
+  reverseMessData.reverse()
   return (
     <div>
     <div className={classes.messages__block}>
-      {props.messagesData.map((el) => {
+      {reverseMessData.map((el) => {
         return (
           <UserMessagesItem
           addedAt={el.addedAt}

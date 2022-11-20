@@ -1,7 +1,7 @@
 
 .messages{
     display: grid;
-    grid-template-columns:3fr 0.5fr 10fr;
+    grid-template-columns:3fr 0.5fr 6fr;
     height:40em;
 }
 .dialog {
@@ -21,18 +21,21 @@
   .messages__block{
     display: flex;
     height:30em;
-    flex-direction: column;
+    width: 40em;
+    flex-direction: column-reverse;
     padding: 1em;
     background: rgb(241, 183, 183);
     border-top-right-radius: 1.2em;
     border-bottom-right-radius:1.2em;
     box-shadow:0 0 10px;
-    overflow: scroll;
+    overflow: auto;
+    scroll-snap-align: start;
   }
   
  .form{
   display: flex;
   flex-direction: row;
   align-items: center;
+  width:35em;
 
  }

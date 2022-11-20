@@ -27,6 +27,7 @@ class App extends React.Component {
         <Navbar />
         <div className="app__pages__content">
           <Routes>
+          <Route path="/" element={<LoginContainer />} />
             <Route path="/profile/:userId" element={<ProfileConainer />} />
             <Route path="/findusers/*" element={<FindUsers />} />
 
