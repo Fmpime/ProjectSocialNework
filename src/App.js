@@ -11,7 +11,7 @@ import MessagesContainer from "./components/pages/messages/MessagesContainer";
 import Music from "./components/pages/music/Music";
 import News from "./components/pages/news/News";
 import ProfileConainer from "./components/pages/profile/ProfileContainer";
-import Settings from "./components/pages/settings/Music";
+import Settings from "./components/pages/settings/Settings";
 import { withRouter } from "./hoc/WithRouerHOC";
 import {inicializedThunkCreator} from './redux/AppReducer'
 import Feching from "./components/UI/Fetching/Feching";
