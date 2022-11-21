@@ -19,8 +19,8 @@ const UserMessagesItem = (props) => {
           <img  style={{height:"4em",width:"4em"}}
             src={'https://bain.design/wp-content/uploads/2014/08/People-Avatar-Set-Rectangular-12.jpg'}
             alt="zxc"
-          }
-          />
+          
+          />}
         </div>
       ) : (
         <div className={classes.friendmessage}>
