@@ -13,8 +13,14 @@ import { Route, Routes} from "react-router-dom";
 
 class Messages extends React.Component{
   componentDidMount(){
-   
-  }
+      const socket = new WebSocket("wss://social-network.samuraijs.com/handlers/ChatHandler.ashx")
+      socket.onopen = function(){
+          console.log('socket connected')
+      }
+      socket.onmessage = (e)=>{
+          console.log(e.data)
+      }
+    };
   render(){
   return (
     <div className={classes.messages}>

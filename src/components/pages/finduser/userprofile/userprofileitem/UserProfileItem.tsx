@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+//@ts-ignore
 import classes from "./../../FindUser.module.css";
-const UserProfileItem = (props) => {
-  const follow = (id) => {
+
+
+const UserProfileItem = (props: { buttonDisabler: (arg0: number, arg1: boolean) => void; follow: (arg0: number) => void; unfollow: (arg0: number) => void; state: { id: number; photos:any ; name: string | null ; status: string|null|undefined; followed: boolean; disableStatus: boolean ; }; }) => {
+  const follow = (id: number) => {
     props.buttonDisabler(id,true)
     props.follow(id);
   };
-  const unfollow = (id) => {
+  const unfollow = (id: number) => {
     props.buttonDisabler(id,true)
     props.unfollow(id);
     
@@ -18,14 +21,14 @@ const UserProfileItem = (props) => {
           <Link to={"/profile/" + props.state.id}>
             <img
               src={
-                props.state.photos.small != null
+                props.state.photos !== undefined &&  props.state.photos.small !== null
                   ? props.state.photos.small
                   : "https://bain.design/wp-content/uploads/2014/08/People-Avatar-Set-Rectangular-12.jpg"
               }
               alt="qwe"
             />
           </Link>
-          <place>Country, State</place>
+          <div>Country, State</div>
         </div>
         <div className={classes.user_profile_info_text}>
           <h4>{props.state.name}</h4>

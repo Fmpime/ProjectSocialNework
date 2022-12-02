@@ -1,8 +1,9 @@
 import React from "react";
+// @ts-ignore
 import classes from "./../../FindUser.module.css";
 
 import UserProfileItem from "./UserProfileItem";
-const UsersProfileItems = (props) => {
+const UsersProfileItems = (props: { totalUserCount: number; pageSize: number; onsetCurrenPageFunc: (arg0: number) => void; currentPage: number; findUserData: any[]; unfollow: (arg0: number) => void; follow: (arg0: number) => void; buttonDisabler: (arg0: number, arg1: boolean) => void; }) => {
   let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
   let pagesArr = [];
   for (let i = 1; i <= pagesCount; i++) {
@@ -38,7 +39,6 @@ const UsersProfileItems = (props) => {
           );
         })}
       </div>
-      <button  nameButton="jxdn"></button>
     </div>
   );
 };

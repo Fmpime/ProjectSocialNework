@@ -1,7 +1,8 @@
 import React from "react";
+// @ts-ignore
 import classes from "./MessageItem.module.css";
 
-const UserMessagesItem = (props) => {
+const UserMessagesItem = (props: {viewed:boolean; translatedBody:any; recipientId:number; id:number; addedAt:string; senderId: number; myId: number; senderName: string; body: string; authUserPhoto: string | undefined; }) => {
   return (
     <div className={classes.messageItem}>
       {props.senderId === props.myId ? (

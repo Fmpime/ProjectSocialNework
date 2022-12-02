@@ -13,7 +13,7 @@ import News from "./components/pages/news/News";
 import ProfileConainer from "./components/pages/profile/ProfileContainer";
 import Settings from "./components/pages/settings/Settings";
 import { withRouter } from "./hoc/WithRouerHOC";
-import {inicializedThunkCreator} from './redux/AppReducer'
+import {inicializedThunkCreator} from './redux/AppReducer.ts'
 import Feching from "./components/UI/Fetching/Feching";
 class App extends React.Component {
   componentDidMount() {

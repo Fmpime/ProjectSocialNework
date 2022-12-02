@@ -2,14 +2,25 @@ import { dialogAPI, userAPI } from "../API/Api";
 
 const UPDATE_DIALOG_DATA = "dialog/UPDATE-DIALOG-DATA";
 const SET_DIALOG_LIST = "dialog/SET-DIALOG-LIST";
+
+type messageDataType = {
+  id:number
+  message: string
+}
+type dialogsDataType = {
+  id:number
+  name: string
+}
+
 let initialState = {
   _myId: null,
-  _messageData: [],
+  _messageData: [] as Array<messageDataType>,
   _newMessage: "",
-  _dialogsData: [],
+  _dialogsData: []as Array<dialogsDataType>,
 };
+export type initialStateType = typeof initialState
 
-const messageReducer = (state = initialState, action) => {
+const messageReducer = (state = initialState, action:any) => {
   switch (action.type) {
     case UPDATE_DIALOG_DATA: {
       if (action.data.length !== state._dialogsData.length) {
@@ -21,8 +32,8 @@ const messageReducer = (state = initialState, action) => {
     }
     case SET_DIALOG_LIST: {
       
-      let newMessages = []
-      action.data.items.map((el,index)=>{
+      let newMessages:Array<any> = []
+      action.data.items.map((el:any,index:number)=>{
         return newMessages[index]={
         addedAt:el.addedAt,
         body:el.body,
@@ -43,14 +54,26 @@ const messageReducer = (state = initialState, action) => {
       return state;
   }
 };
-export const setDialogListActionCreator = (data) => {
+
+export type setDialogListActionCreatorType ={
+  type : typeof SET_DIALOG_LIST
+  data: object
+}
+
+
+export const setDialogListActionCreator = (data:object):setDialogListActionCreatorType => {
   return { type: SET_DIALOG_LIST, data };
 };
-export const updateDialogData = (data) => {
+export type updateDialogDataType = {
+  type: typeof UPDATE_DIALOG_DATA
+  data: Array<object>
+}
+
+export const updateDialogData = (data:Array<object>):updateDialogDataType => {
   return { type: UPDATE_DIALOG_DATA, data };
 };
 export const updataDialogThunkCreator = () => {
-  return (dispatch) => {
+  return (dispatch:any) => {
     dialogAPI.getDialogs().then((data) => {
       if (data.length) {
         dispatch(updateDialogData(data));
@@ -58,8 +81,8 @@ export const updataDialogThunkCreator = () => {
     });
   };
 };
-export const startDialogThunkCreator = (id) => {
-  return (dispatch) => {
+export const startDialogThunkCreator = (id:number) => {
+  return (dispatch:any) => {
     userAPI.followed(id).then((response) => {
       if (response) {
         dialogAPI.startDialogWithFriend(id).then((response) => {
@@ -73,15 +96,15 @@ export const startDialogThunkCreator = (id) => {
     });
   };
 };
-export const getDialogListThunkCreator = (id) => {
-  return (dispatch) => {
+export const getDialogListThunkCreator = (id:number) => {
+  return (dispatch:any) => {
     dialogAPI.getDialogList(id).then((response) => {
       dispatch(setDialogListActionCreator(response.data));
     });
   };
 };
-export const postMessageInListThunkCreator = (id,message) => {
-  return (dispatch) => {
+export const postMessageInListThunkCreator = (id:number,message:string) => {
+  return (dispatch:any) => {
     dialogAPI.postMessageInList(id,message).then((res)=>{
       dialogAPI.getDialogList(id).then((response) => {
         dispatch(setDialogListActionCreator(response.data));
@@ -89,4 +112,5 @@ export const postMessageInListThunkCreator = (id,message) => {
     })
   }
 };
+
 export default messageReducer;

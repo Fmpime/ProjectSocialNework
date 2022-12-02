@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from '../../../../../hoc/WithRouerHOC';
+// @ts-ignore
 import classes from './DialogsItem.module.css'
-const DialogsItem = (props) => {
+const DialogsItem = (props: { router: { params: any,navigate:any,location:any }; id: number; name: string; }) => {
     const [onDialogs, setOnDialogs] = useState(false);
     useEffect(() => {
         const pageId = props.router.params['*']

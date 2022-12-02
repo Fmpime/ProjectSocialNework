@@ -1,9 +1,11 @@
 import { configureStore} from '@reduxjs/toolkit';
-import appReducer from './AppReducer';
-import authReducer from './AuthReducer';
-import findUserReducer from './FindUserReducer';
-import messageReducer from "./MessageReducer";
 import profileReducer from "./ProfileReducer";
+import messageReducer from "./MessageReducer";
+import findUserReducer from "./FindUserReducer";
+import appReducer from "./AppReducer";
+import authReducer from "./AuthReducer";
+
+
 
 
 let store = configureStore({
@@ -15,5 +17,4 @@ let store = configureStore({
     app: appReducer,
     }
 });
-window.store=store
 export default store;

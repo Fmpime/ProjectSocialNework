@@ -1,7 +1,7 @@
 
 import Message from "./Message";
-import React from 'react'
-import {getDialogListThunkCreator, postMessageInListThunkCreator,
+import React, { useEffect } from 'react'
+import { getDialogListThunkCreator, postMessageInListThunkCreator,
 } from "../../../../redux/MessageReducer";
 import { connect } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -29,23 +29,18 @@ const mapStateToProps = (state) =>{
   }}
 
 
-class MessageContainer extends React.Component{
-  componentDidMount() {
-    const ChatId = this.props.router.params.userId
-    this.props.getDialogListThunkCreator(ChatId)
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.router.params.userId!== this.props.router.params.userId){
-    const ChatId = this.props.router.params.userId
-    this.props.getDialogListThunkCreator(ChatId)}
-  }
-  render(){
-    const ChatId = this.props.router.params.userId
+const MessageContainer = (props) =>{
+  let ChatId = props.router.params.userId
+    useEffect(() => {
+        let ChatId = props.router.params.userId
+        props.getDialogListThunkCreator(ChatId)
+    }, [ChatId,]);
+    
+
     return(
-      <Message {...this.props} ChatId={ChatId} />
+      <Message {...props} ChatId={ChatId} />
     )
   }
-}
 
 export default connect(mapStateToProps,{
   getDialogListThunkCreator,

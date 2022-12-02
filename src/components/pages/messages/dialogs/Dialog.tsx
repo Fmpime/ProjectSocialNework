@@ -1,10 +1,11 @@
 import React from 'react';
 import DialogsItem from './dialogitem/DialogsItem';
+// @ts-ignore
 import classes from "../Messages.module.css";
 import { withRouter } from '../../../../hoc/WithRouerHOC';
 
 
-const Dialog = (props) => {
+const Dialog = (props: { updataDialogThunkCreator: () => void; dialogsData: any[]; }) => {
       props.updataDialogThunkCreator()
     return (
         <div className={classes.dialog}>
