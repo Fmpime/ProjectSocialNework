@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../UI/button/Button';
+// @ts-ignore
 import classes from '../Header.module.css'
-const AuthForm = (props) => {
+const AuthForm = (props: { isAuth: any; id: string; login: string; logoutThunkCreator: () => void; }) => {
     if(!props.isAuth){
     return (
         <div className={classes.loginblock}>

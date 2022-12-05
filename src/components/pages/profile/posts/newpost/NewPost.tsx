@@ -1,9 +1,10 @@
 import React from "react";
 import { Form, Formik, Field } from "formik";
 
+// @ts-ignore
 import classes from "./NewPost.module.css";
 
-const NewPost = (props) => {
+const NewPost = (props: { addPost: (arg0: { postHead: string; postBody: string; }) => void; }) => {
   return (
     <div className={classes.new__post}>
       <p>Create new post!</p>

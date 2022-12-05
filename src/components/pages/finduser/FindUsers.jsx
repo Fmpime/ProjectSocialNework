@@ -1,4 +1,5 @@
 import React from 'react';
+//@ts-ignore
 import classes from './FindUser.module.css'
 import UserProfileItemsContainer from './userprofile/UserProfileItemsContainer';
 const FindUsers = () => {

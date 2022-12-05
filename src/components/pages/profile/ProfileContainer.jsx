@@ -40,7 +40,6 @@ class ProfileConainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("mstp");
   return {
     profileState: getProfile(state),
     status: getStatus(state),
