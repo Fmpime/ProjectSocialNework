@@ -43,11 +43,15 @@ type PropsType = {
         fullName: string,
         userId: number
     ) => (dispatch: any) => void
+    routrer:{
+        location:any
+        navigate:any
+        params:any
+    }
 }
 
 
 const Profile = (props:PropsType) => {
-    console.log(props)
     const [changeProfileMode, setChangeProfileMode] = useState(false);
     return (
         <div className={classes.content}>

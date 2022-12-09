@@ -14,20 +14,34 @@ import { compose } from "redux";
 import { authNavigateHOC } from "../../../../hoc/AuthNavigate";
 import { getCurrentPage, getFindUser, getIsFetching, getPageSize, getTotalUserCount } from "../../../../redux/UserSelectors";
 
-class UserProfileItemsClass extends React.Component {
+type PropsType = {
+  currentPage:number
+  pageSize:number
+  getUsersThunkCreator:(arg1:number,arg2:number)=>void
+  setCurrenPage:(arg:number)=>{}
+  isFeteching:boolean
+  buttonDisabler:(arg0: number, arg1: boolean)=>void
+  totalUserCount:number
+  findUserData:[{}]
+  follow:(arg:number)=>void
+  unfollow:(arg:number)=>void
+}
+
+
+class UserProfileItemsClass extends React.Component<PropsType> {
   componentDidMount() {
     this.props.getUsersThunkCreator(
       this.props.currentPage,
       this.props.pageSize
     );
   }
-  onFollowStatus(id) {
-    this.follow(id);
+  onFollowStatus(id: number) {
+    this.props.follow(id);
   }
-  onUnFollowStatus(id) {
-    this.unfollow(id);
+  onUnFollowStatus(id:number) {
+    this.props.unfollow(id);
   }
-  onsetCurrenPageFunc = (p) => {
+  onsetCurrenPageFunc = (p:number) => {
     this.props.setCurrenPage(p);
     this.props.getUsersThunkCreator(p, this.props.pageSize);
   };
@@ -59,7 +73,7 @@ class UserProfileItemsClass extends React.Component {
 //     isFeteching: state.findUser.isFetching,
 //   };
 // };
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
   return {
     findUserData: getFindUser(state),
     totalUserCount: getTotalUserCount(state),

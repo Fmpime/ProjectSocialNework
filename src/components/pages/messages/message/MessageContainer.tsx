@@ -8,8 +8,8 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 
 
-function withRouter(Component) {
-  function ComponentWithRouterProp(props) {
+function withRouter(Component: any) {
+  function ComponentWithRouterProp(props: JSX.IntrinsicAttributes) {
     let location = useLocation();
     let navigate = useNavigate();
     let params = useParams();
@@ -20,7 +20,7 @@ function withRouter(Component) {
 }
 
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state: { auth: { data: { id: any; }; }; messages: { _messageData: any; }; profile: { profile: { photos: {small:string}; }; }; }) =>{
   return{
       myId: state.auth.data.id,
       messagesData:state.messages._messageData,
@@ -29,7 +29,7 @@ const mapStateToProps = (state) =>{
   }}
 
 
-const MessageContainer = (props) =>{
+const MessageContainer = (props:{router:{params:any}, messagesData: any[]; myId: number; authUserPhoto: { small: string; large: string; }; postMessageInListThunkCreator: (arg0: number, arg1: string) => void; ChatId: number; getDialogListThunkCreator:(arg:number)=>void;}) =>{
   let ChatId = props.router.params.userId
     useEffect(() => {
         let ChatId = props.router.params.userId
